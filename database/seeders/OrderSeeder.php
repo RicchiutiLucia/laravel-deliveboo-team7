@@ -18,7 +18,7 @@ class OrderSeeder extends Seeder
 
         $orders = [
             [
-                'total_price' => '12,3',
+                'total_price' => '12.30',
                 'name' => 'Gino',
                 'address' => 'via Roma 124',
                 'email' => 'gino@gmail.com',
@@ -26,15 +26,15 @@ class OrderSeeder extends Seeder
                 'status' => false,
             ],
             [
-                'total_price' => '52,5',
+                'total_price' => '52.50',
                 'name' => 'Pino',
-                'address' => 'via Milano 34',
+                'address' => 'via Milano 340',
                 'email' => 'pino@gmail.com',
                 'phone' => '00393409839988',
                 'status' => false,
             ],
             [
-                'total_price' => '82,8',
+                'total_price' => '82.80',
                 'name' => 'Mario',
                 'address' => 'via Firenze 89',
                 'email' => 'mario@yahoo.com',
@@ -42,7 +42,7 @@ class OrderSeeder extends Seeder
                 'status' => false,
             ],
             [
-                'total_price' => '22,8',
+                'total_price' => '22.80',
                 'name' => 'Giorgio',
                 'address' => 'via Giove 102',
                 'email' => 'giorgio@yahoo.com',
@@ -50,7 +50,7 @@ class OrderSeeder extends Seeder
                 'status' => false,
             ],
             [
-                'total_price' => '82,8',
+                'total_price' => '82.80',
                 'name' => 'PierGiorgio',
                 'address' => 'via Garibaldi 7',
                 'email' => 'piergiorgio@yahoo.com',
