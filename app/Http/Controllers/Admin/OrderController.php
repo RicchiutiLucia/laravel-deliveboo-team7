@@ -6,7 +6,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+
 
 class OrderController extends Controller
 {
@@ -64,8 +64,7 @@ class OrderController extends Controller
      */
     public function edit($id)
     {
-        $orders = Order::findOrFail($id);
-        return view('admin.orders.edit', compact('orders'));
+       
     }
 
     /**
@@ -78,10 +77,7 @@ class OrderController extends Controller
     public function update(Request $request, $id)
     {
 
-        $orders = Order::findOrFail($id);
-        $data = $request->validate();
-        $orders -> update($data);
-        return redirect()->route('admin.orders.index');
+        
     }
 
     /**
@@ -93,8 +89,6 @@ class OrderController extends Controller
     public function destroy($id)
     {
 
-        $order = Order::findOrFail($id);
-        $order->delete();
-        return redirect()->route('admin.orders.index');
+        
     }
 }
