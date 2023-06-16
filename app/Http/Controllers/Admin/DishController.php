@@ -85,7 +85,7 @@ class DishController extends Controller
      * @param  \App\Models\Dish  $dish
      * @return \Illuminate\Http\Response
      */
-    public function update(UdateDishRequest $request, Dish $dish)
+    public function update(UpdateDishRequest $request, Dish $dish)
     {
         $validated_data = $request->validated();
         $validated_data['slug'] = Dish::generateSlug($request->name);
