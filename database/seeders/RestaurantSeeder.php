@@ -110,8 +110,9 @@ class RestaurantSeeder extends Seeder
              ],
          ];
 
-            foreach ($restaurants as $restaurant) {
+            foreach ($restaurants as $key => $restaurant) {
                 $newRestaurant = new Restaurant();
+                $newRestaurant->user_id = $key;
                 $newRestaurant->name = $restaurant['name'];
                 $newRestaurant->slug = Str::slug($restaurant['name'], '-');
                 $newRestaurant->address = $restaurant['address'];
