@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('restaurants', function (Blueprint $table) {
             $table->id();
+            $table->string('name',200)->unique();
             $table->string('slug',200)->unique();
             $table->string('address',100);
             $table->string('vat_number',11);

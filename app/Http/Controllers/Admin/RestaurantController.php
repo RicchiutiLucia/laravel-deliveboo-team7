@@ -4,9 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Restaurant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class RestaurantController extends Controller
 {
@@ -17,8 +20,7 @@ class RestaurantController extends Controller
      */
     public function index()
     {
-        $restaurants = Restaurant::all();
-        return view('admin.restaurants.index', compact('restaurants'));
+       
     }
 
     /**
@@ -28,7 +30,11 @@ class RestaurantController extends Controller
      */
     public function create()
     {
-        return view('admin.restaurants.create');
+        if (Auth::user()->restaurant) {
+            return redirect()->route('admin.dashboard');
+        }
+        $categories = Category::all();
+        return view('admin.restaurants.create', compact('categories'));
     }
 
     /**
@@ -39,9 +45,9 @@ class RestaurantController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->validated();
+        /*$data = $request->validated();
 
-        $data['slug'] = Str::slug($request->name,'-');
+        $data['slug'] = Restaurant::generateSlug($request->name);
 
         $check = Restaurant::where('slug', $data['slug'])->first();
 
@@ -49,9 +55,32 @@ class RestaurantController extends Controller
             return back()->withInput()->withErrors(['slug' => 'Con questo nome crei uno slug doppiato']);
         }
 
-        $newTechnology = Restaurant::create($data);
+        $newRestaurant = Restaurant::create($data);
 
-        return redirect()->route('admin.restaurants.index');
+        return redirect()->route('admin.restaurants.index');*/
+        $newRestaurant = new Restaurant();
+        $newRestaurant->name = $request->name;
+        $newRestaurant->slug = Str::slug($request->name);
+        $newRestaurant->address = $request->address;
+        $newRestaurant->vat_number = $request->vat_number;
+        $newRestaurant->user_id = Auth::id();
+        $newRestaurant->phone = $request->phone;
+        $newRestaurant->description = $request->description;
+
+        if ($request->hasFile('image')) {
+            if ($newRestaurant->image){
+                Storage::delete($newRestaurant->image);
+            }
+
+            $path = Storage::put('cover', $request->image);
+            $validated_data['image'] = $path;
+        }
+        $newRestaurant->save();
+
+        if ($request->has('categories')) {
+            $newRestaurant->categories()->attach($request->categories);
+        }
+        return redirect()->route('admin.dashboard');
     }
 
     /**

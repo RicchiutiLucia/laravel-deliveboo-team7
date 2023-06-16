@@ -23,4 +23,8 @@
         </div>
     </div>
 </div>
+
+<div>
+    <h1>{{$restaurant->name}}</h1>
+</div>
 @endsection
