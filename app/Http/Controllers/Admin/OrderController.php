@@ -80,7 +80,7 @@ class OrderController extends Controller
 
         $orders = Order::findOrFail($id);
         $data = $request->validate();
-        $orders -> update($data);
+        $orders->update($data);
         return redirect()->route('admin.orders.index');
     }
 
