@@ -51,6 +51,11 @@ class DishController extends Controller
             return back()->withInput()->withErrors(['slug' => 'Nome del piatto giá in uso']);
         }
 
+        if ($request->hasFile('image')) {
+            $path = Storage::put('cover', $request->image);
+            $validated_data['image'] = $path;
+        }
+
         $newDish = Dish::create($validated_data);
 
         return redirect()->route('admin.dishes.show', ['dish' => $newDish->slug])->with('status', 'Nuovo Piatto creato!');
@@ -93,6 +98,15 @@ class DishController extends Controller
         $checkDish = Dish::where('slug', $validated_data['slug'])->where('id', '<>', $dish->id)->first();
         if ($checkDish) {
             return back()->withInput()->withErrors(['slug' => 'Nome del piatto giá in uso']);
+        }
+
+        if ($request->hasFile('image')) {
+            if ($dish->image){
+                Storage::delete($dish->image);
+            }
+
+            $path = Storage::put('cover', $request->image);
+            $validated_data['image'] = $path;
         }
 
         $dish->update($validated_data);
