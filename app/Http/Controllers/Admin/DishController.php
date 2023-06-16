@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreDishRequest;
+use App\Http\Requests\UpdateDishRequest;
+
 use App\Models\Dish;
 use Illuminate\Http\Request;
 
@@ -16,7 +19,9 @@ class DishController extends Controller
      */
     public function index()
     {
-        //
+       $dishes = Dish::all();
+        return view('admin.dishes.index', compact('dishes'));
+       
     }
 
     /**
@@ -26,7 +31,8 @@ class DishController extends Controller
      */
     public function create()
     {
-        //
+        
+        return view('admin.dishes.create');
     }
 
     /**
@@ -35,9 +41,19 @@ class DishController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreDishRequest $request)
     {
-        //
+        $validated_data = $request->validated();
+        $validated_data['slug'] = Dish::generateSlug($request->name);
+
+        $checkDish = Dish::where('slug', $validated_data['slug'])->first();
+        if ($checkDish) {
+            return back()->withInput()->withErrors(['slug' => 'Nome del piatto giá in uso']);
+        }
+
+        $newDish = Dish::create($validated_data);
+
+        return redirect()->route('admin.dishes.show', ['dish' => $newDish->slug])->with('status', 'Nuovo Piatto creato!');
     }
 
     /**
@@ -48,7 +64,7 @@ class DishController extends Controller
      */
     public function show(Dish $dish)
     {
-        //
+        return view('admin.dishes.show', compact('dish'));
     }
 
     /**
@@ -59,7 +75,7 @@ class DishController extends Controller
      */
     public function edit(Dish $dish)
     {
-        //
+        return view('admin.dishes.edit', compact('dish'));
     }
 
     /**
@@ -69,9 +85,19 @@ class DishController extends Controller
      * @param  \App\Models\Dish  $dish
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Dish $dish)
+    public function update(UdateDishRequest $request, Dish $dish)
     {
-        //
+        $validated_data = $request->validated();
+        $validated_data['slug'] = Dish::generateSlug($request->name);
+
+        $checkDish = Dish::where('slug', $validated_data['slug'])->where('id', '<>', $dish->id)->first();
+        if ($checkDish) {
+            return back()->withInput()->withErrors(['slug' => 'Nome del piatto giá in uso']);
+        }
+
+        $dish->update($validated_data);
+
+        return redirect()->route('admin.dishes.show', ['dish' => $dish->slug])->with('status', 'Piatto aggiornato!');
     }
 
     /**
@@ -82,6 +108,7 @@ class DishController extends Controller
      */
     public function destroy(Dish $dish)
     {
-        //
+        $dish->delete();
+        return redirect()->route('admin.dishes.index');
     }
 }
