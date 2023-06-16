@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Dish;
+use Illuminate\Support\Str;
 
 class DishSeeder extends Seeder
 {
@@ -229,6 +230,7 @@ class DishSeeder extends Seeder
         foreach ($dishes as $dish){
             $newDish = new Dish();
             $newDish->name = $dish['name'];
+            $newDish->slug = Str::slug($dish['name'], '-');
             $newDish->price = $dish['price'];
             $newDish->ingredients = $dish['ingredients'];
             $newDish->description = $dish['description'];
