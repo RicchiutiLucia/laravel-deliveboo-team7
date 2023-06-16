@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class OrderController extends Controller
 {
@@ -16,7 +17,8 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $orders = Order::all();
+        return view('admin.orders.index', compact('orders'));
     }
 
     /**
@@ -26,7 +28,7 @@ class OrderController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.orders.create');
     }
 
     /**
@@ -37,7 +39,9 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate();
+        $newOrder = Order::create($data);
+        return redirect()->route('admin.orders.index');
     }
 
     /**
@@ -46,9 +50,10 @@ class OrderController extends Controller
      * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function show(Order $order)
+    public function show($id)
     {
-        //
+        $orders = Order::findOrFail($id);
+        return view('admin.orders.show', compact('orders'));
     }
 
     /**
@@ -57,9 +62,10 @@ class OrderController extends Controller
      * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function edit(Order $order)
+    public function edit($id)
     {
-        //
+        $orders = Order::findOrFail($id);
+        return view('admin.orders.edit', compact('orders'));
     }
 
     /**
@@ -69,9 +75,13 @@ class OrderController extends Controller
      * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Order $order)
+    public function update(Request $request, $id)
     {
-        //
+
+        $orders = Order::findOrFail($id);
+        $data = $request->validate();
+        $orders -> update($data);
+        return redirect()->route('admin.orders.index');
     }
 
     /**
@@ -80,8 +90,11 @@ class OrderController extends Controller
      * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Order $order)
+    public function destroy($id)
     {
-        //
+
+        $order = Order::findOrFail($id);
+        $order->delete();
+        return redirect()->route('admin.orders.index');
     }
 }
