@@ -30,7 +30,7 @@ class StoreDishRequest extends FormRequest
         'slug' => 'required',
         'ingredients' => 'nullable',
         'description' => 'nullable',
-        'image' => 'nullable',
+        'image' => 'nullable|image|max:1024',
         'restaurant_id' => 'required',
         'visible' => 'required'
         
