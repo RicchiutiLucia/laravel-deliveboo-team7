@@ -14,8 +14,17 @@ return new class extends Migration
     public function up()
     {
         Schema::create('dish_order', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+           // $table->id();
+            //$table->timestamps();
+            $table->unsignedTinyInteger('quantity');
+            
+            $table->unsignedBigInteger('dish_id');
+            $table->foreign('dish_id')->references('id')->on('dishes')->onDelete('CASCADE');
+
+            $table->unsignedBigInteger('order_id');
+            $table->foreign('order_id')->references('id')->on('orders')->onDelete('CASCADE');
+
+
         });
     }
 
