@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Restaurant;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class RestaurantController extends Controller
 {
@@ -16,7 +17,8 @@ class RestaurantController extends Controller
      */
     public function index()
     {
-        //
+        $restaurants = Restaurant::all();
+        return view('admin.restaurants.index', compact('restaurants'));
     }
 
     /**
@@ -26,7 +28,7 @@ class RestaurantController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.restaurants.create');
     }
 
     /**
@@ -37,7 +39,19 @@ class RestaurantController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validated();
+
+        $data['slug'] = Str::slug($request->name,'-');
+
+        $check = Restaurant::where('slug', $data['slug'])->first();
+
+        if($check){
+            return back()->withInput()->withErrors(['slug' => 'Con questo nome crei uno slug doppiato']);
+        }
+
+        $newTechnology = Restaurant::create($data);
+
+        return redirect()->route('admin.restaurants.index');
     }
 
     /**
@@ -59,7 +73,7 @@ class RestaurantController extends Controller
      */
     public function edit(Restaurant $restaurant)
     {
-        //
+        
     }
 
     /**

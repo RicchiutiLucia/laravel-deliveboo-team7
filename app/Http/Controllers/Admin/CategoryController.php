@@ -27,7 +27,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.categories.create');
+        
     }
 
     /**
@@ -38,18 +38,7 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->validate();
-
-        $data['slug'] = Str::slug($request->name, '-');
-
-        $isDuplicate = Category::where('slug', $data['slug'])->first();
-
-        if ($isDuplicate) {
-            return back()->withInput()->withErrors(['slug' => 'Nome già esistente']);
-        }
-
-        $newCategory = Category::create($data);
-        return redirect()->route('admin.categories.index');
+        
     }
 
     /**
@@ -60,8 +49,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        $categories = Category::all();
-        return view('admin.categories.show', compact('categories'));
+       
     }
 
     /**
@@ -72,7 +60,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        return view('admin.categories.edit', compact('category'));
+       
     }
 
     /**
@@ -84,16 +72,7 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        $data = $request->validate();
-
-        $data['slug'] = Str::slug($request->name, '-');
-
-        $isDuplicate = Category::where('slug', $data['slug'])->where('id', '<>', $category->id)->first();
-        if ($isDuplicate) {
-            return back()->withInput()->withErrors(['slug' => 'Nome gia esistente']);
-        }
-        $category->update($data);
-        return redirect()->route('admin.categories.index');
+       
     }
 
     /**
@@ -104,8 +83,6 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        $category = Category::findOrFail($category->id);
-        $category->delete();
-        return redirect()->route('admin.categories.index');
+       
     }
 }
