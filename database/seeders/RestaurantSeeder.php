@@ -20,15 +20,6 @@ class RestaurantSeeder extends Seeder
         $restaurants = [
             [
                 'user_id' => '',
-                'name' => '',
-                'description' => "Situata nel cuore del Parco Nazionale del Gargano, in Puglia, l’agriturismo è un ottimo punto di partenza e di arrivo per le escursioni nei centri turistici pugliesi di interesse naturalistico e culturale. Immerso nel verde degli ulivi e poco distante dal mare, l’Agriturismo Giorgio offre una vera oasi di tranquillità ed un invitante occasione di relax.",
-                'address' => 'Contrada San Giorgio',
-                'phone' => '0884.551477',
-                'vat_number' => '00565051900',
-                'image' => 'https://www.agriturismi.it/img/strutture/9058/agriturismo_giorgio_piscina_20210720121920d.jpg',
-            ],
-            [
-                'user_id' => '',
                 'name' => 'Dar bello de Nonna Osteria',
                 'description' => "",
                 'address' => 'Via Quirino Majorana, 172, 00152 Roma RM',
@@ -54,15 +45,7 @@ class RestaurantSeeder extends Seeder
                 'vat_number' => '08767620086',
                 'image' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzzRyMkVDCApnXRH8GdQv7K_KjDFGkmby6jg&usqp=CAU',
             ],
-            [
-                'user_id' => '',
-                'name' => 'Cencio la Parolaccia',
-                'description' => "",
-                'address' => 'Vicolo del Cinque, 3, 00153 Roma RM',
-                'phone' => '06 580 3633',
-                'vat_number' => '98724991562',
-                'image' => 'https://lh3.googleusercontent.com/p/AF1QipOxh_K5Dy7pA-EVxc3cCdC8WJIXU_N5O4xK5_RN=s680-w680-h510',
-            ],
+
             [
                 'user_id' => '',
                 'name' => 'Ristorante Sushi Koi',
@@ -77,8 +60,8 @@ class RestaurantSeeder extends Seeder
                 'name' => 'Lo Convento',
                 'description' => "",
                 'address' => 'Via Ostiense, 491, 00144 Roma RM',
-                'phone' => '06 541 0115',
-                'vat_number' => '98645686237',
+                'phone' => '06 5283 0009',
+                'vat_number' => '78543213467',
                 'image' => 'https://lh3.googleusercontent.com/p/AF1QipMdvC_sw42zUCv_re-6aABnxJEKou4pV7lpH38v=s680-w680-h510',
             ],
             [
@@ -107,6 +90,24 @@ class RestaurantSeeder extends Seeder
                 'phone' => '06 541 6446',
                 'vat_number' => '32256789677',
                 'image' => 'https://lh3.googleusercontent.com/p/AF1QipMMGPP2t0qe87WJyoNH4mbSuiaqEdS-wVn3TmUw=s680-w680-h510',
+            ],
+            [
+                'user_id' => '',
+                'name' => 'Pasticceria Tornatora',
+                'description' => "",
+                'address' => 'V.le della Grande Muraglia, 320, 00144 Roma RM',
+                'phone' => '06 541 6446',
+                'vat_number' => '87213456320',
+                'image' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwtYedbkznj93LOMujphS468k3Va0BSwqXdg&usqp=CAU',
+            ],
+            [
+                'user_id' => '',
+                'name' => 'Rue Burger',
+                'description' => "",
+                'address' => "Largo Santa Maria Stella dell'Evangelizzazione, 3, 00144 Roma RM",
+                'phone' => '06 9784 4768',
+                'vat_number' => '02365499876',
+                'image' => 'https://www.polarpark.it/wp-content/uploads/2022/12/rue-burger.png',
             ],
         ];
 
