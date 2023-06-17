@@ -12,6 +12,8 @@ class Restaurant extends Model
     use HasFactory;
 
     protected $fillable = [
+        'name',
+        'vat_number',
         'address',
         'description',
         'slug',
@@ -21,9 +23,8 @@ class Restaurant extends Model
     ];
 
 
-    public static function generateSlug(string $user_id) {
-        $_name =  User::find($user_id)->name;
-        return Str::slug($_name, '-');
+    public static function generateSlug(string $name) {
+        return Str::slug($name, '-');
     }   
     
     public function categories() {

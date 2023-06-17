@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\StoreRestaurantRequest;
 
 class RestaurantController extends Controller
 {
@@ -43,43 +44,35 @@ class RestaurantController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        /*$data = $request->validated();
+    public function store(StoreRestaurantRequest $request)
+    {   
 
-        $data['slug'] = Restaurant::generateSlug($request->name);
+        
+        $validated_data = $request->validated();
+        
+        $validated_data['slug'] = Restaurant::generateSlug($request->name);
+       
 
-        $check = Restaurant::where('slug', $data['slug'])->first();
-
-        if($check){
-            return back()->withInput()->withErrors(['slug' => 'Con questo nome crei uno slug doppiato']);
+        $checkRestaurant = Restaurant::where('slug', $validated_data['slug'])->first();
+        if ($checkRestaurant) {
+            return back()->withInput()->withErrors(['slug' => 'Titolo giá in uso']);
         }
 
-        $newRestaurant = Restaurant::create($data);
-
-        return redirect()->route('admin.restaurants.index');*/
-        $newRestaurant = new Restaurant();
-        $newRestaurant->name = $request->name;
-        $newRestaurant->slug = Str::slug($request->name);
-        $newRestaurant->address = $request->address;
-        $newRestaurant->vat_number = $request->vat_number;
-        $newRestaurant->user_id = Auth::id();
-        $newRestaurant->phone = $request->phone;
-        $newRestaurant->description = $request->description;
 
         if ($request->hasFile('image')) {
-            if ($newRestaurant->image){
-                Storage::delete($newRestaurant->image);
-            }
-
             $path = Storage::put('cover', $request->image);
             $validated_data['image'] = $path;
         }
-        $newRestaurant->save();
+        
+        $validated_data['user_id'] = Auth::id();
 
+        
         if ($request->has('categories')) {
+            $newRestaurant = Restaurant::create($validated_data);
             $newRestaurant->categories()->attach($request->categories);
         }
+
+  
         return redirect()->route('admin.dashboard');
     }
 
