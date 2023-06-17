@@ -54,20 +54,65 @@ class DishSeeder extends Seeder
                 'name' => 'Linguine cacio e pepe',
                 'price' => 14.99,
                 'ingredients' => 'riso, funghi,brodo vegetale, cipolla, parmigiano, prezzemolo',
-                'description' => 'Un delizioso risotto italiano con funghi, cipolla, brodo vegetale, parmigiano e prezzemolo.',
-                'image' => 'https://blog.giallozafferano.it/ricettepanedolci/wp-content/uploads/2020/10/risotto-ai-funghi-1-720x480.jpeg',
+                'description' => "Primo tradizionale che a ogni forchettata, che siano tonnarelli, mezze maniche o spaghetti, riesce a trasmettere tutta la genuinità delle sue origini, portando a un'esperienza enogastronomica in grado di soddisfare tutti i sensi.",
+                'image' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTN8h-sFlYOX-SHvqimzviF8dZk0yQj22N9PQ&usqp=CAU',
                 'restaurant_id' => 1,
                 'visible' => true
             ],
+
             [
-                'name' => 'Rigatoni alla pagliata',
+                'name' => 'Bucatini alla amatriciana',
                 'price' => 14.99,
-                'ingredients' => 'riso, funghi,brodo vegetale, cipolla, parmigiano, prezzemolo',
-                'description' => 'Un delizioso risotto italiano con funghi, cipolla, brodo vegetale, parmigiano e prezzemolo.',
-                'image' => 'https://blog.giallozafferano.it/ricettepanedolci/wp-content/uploads/2020/10/risotto-ai-funghi-1-720x480.jpeg',
+                'ingredients' => 'pomodoro, guanciale, pasta',
+                'description' => "I bucatini all'Amatriciana sono uno dei piatti popolari e tradizionali romani più noti in Italia e nel mondo. Il nome deriverebbe dalla città di Amatrice, un paese che si trova nel Lazio, ai confini con l'Abruzzo, le Marche e l'Umbria, stretto tra i monti Sibillini a nord e il massiccio del Gran Sasso e dei Monti della Laga a sud.",
+                'image' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOu5Qkbek-g63T17p-z9viQO8lMRJ00w23IQ&usqp=CAU',
                 'restaurant_id' => 1,
                 'visible' => true
             ],
+
+            [
+                'name' => 'Chicken Tikka Masala',
+                'price' => 14.99,
+                'ingredients' => 'Pollo speziato ',
+                'description' => "Molto simile al pollo tikka, ma a differenza di quest'ultimo i pezzi di pollo vengono serviti assieme ad una salsa a base di masala (testualmente mistura di spezie), ovvero il curry indiano",
+                'image' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTL2IXSyYAJeQ3dj4C2WGSX37y13i273oLioZEB9Ap4&s',
+                'restaurant_id' => 2,
+                'visible' => true
+            ],
+
+            [
+                'name' => 'Butter chicken',
+                'price' => 14.99,
+                'ingredients' => ' burro chiarificato o olio vegetale, cipolla, sbucciata e affettato patate, strofinate e tagliate a pezzi',
+                'description' => 'Un delizioso risotto italiano con funghi, cipolla, brodo vegetale, parmigiano e prezzemolo.',
+                'image' => 'https://media.istockphoto.com/id/1170729895/photo/indian-butter-chicken-horizontal-photo.jpg?s=612x612&w=0&k=20&c=4bZViynoVnP1HaWHIY1k5FvW-dj9DM2EOMHbKnAqYZ4=',
+                'restaurant_id' => 2,
+                'visible' => true
+            ],
+
+            [
+                'name' => 'Saag aloo',
+                'price' => 14.99,
+                'ingredients' => 'Pollo speziato',
+                'description' => 'Sag aloo è un classico piatto indiano che è molto semplice da preparare ed è l’accompagnamento perfetto per accompagnare un piatto pieno di curry piccante e una grande fetta di pane Naan appena fatto.',
+                'image' => 'https://www.kitchensanctuary.com/wp-content/uploads/2021/03/Saag-Aloo-square-FS-45.jpg',
+                'restaurant_id' => 2,
+                'visible' => true
+            ],
+
+            [
+                'name' => 'Rogan josh lamb',
+                'price' => 14.99,
+                'ingredients' => 'Agnello, yougurt greco, cipolla, Ghi, limone, aglio ',
+                'description' => 'piatto tipico del Kashmir, uno dei più colorati e gustosi di questa regione remota',
+                'image' => 'https://blog.giallozafferano.it/ricettepanedolci/wp-content/uploads/2020/10/risotto-ai-funghi-1-720x480.jpeg',
+                'restaurant_id' => 2,
+                'visible' => true
+            ],
+
+
+
+
 
 
             [
@@ -76,7 +121,7 @@ class DishSeeder extends Seeder
                 'ingredients' => 'farina, mozzarella, basilico, pomodoro',
                 'description' => ' un prodotto gastronomico salato, che consiste in un impasto a base di farina, acqua e lievito, che viene spianato per essere farcito tipicamente con pomodoro e mozzarella o altri ingredienti e poi cotto in un forno a legna.',
                 'image' => 'https://img.freepik.com/free-photo/top-view-pepperoni-pizza-with-mushroom-sausages-bell-pepper-olive-corn-black-wooden_141793-2158.jpg?w=2000',
-                'restaurant_id' => 2,
+                'restaurant_id' => 5,
                 'visible' => true
             ],
 
@@ -86,7 +131,7 @@ class DishSeeder extends Seeder
                 'ingredients' => 'farina, mozzarella, basilico, pomodoro',
                 'description' => 'un prodotto gastronomico salato, che consiste in un impasto a base di farina, acqua e lievito, che viene spianato per essere farcito tipicamente con pomodoro e mozzarella o altri ingredienti e poi cotto in un forno a legna.',
                 'image' => 'https://img.freepik.com/free-photo/top-view-pepperoni-pizza-with-mushroom-sausages-bell-pepper-olive-corn-black-wooden_141793-2158.jpg?w=2000',
-                'restaurant_id' => 2,
+                'restaurant_id' => 5,
                 'visible' => true
             ],
 
@@ -96,7 +141,7 @@ class DishSeeder extends Seeder
                 'ingredients' => 'farina, mozzarella, basilico, pomodoro',
                 'description' => 'un prodotto gastronomico salato, che consiste in un impasto a base di farina, acqua e lievito, che viene spianato per essere farcito tipicamente con pomodoro e mozzarella o altri ingredienti e poi cotto in un forno a legna.',
                 'image' => 'https://img.freepik.com/free-photo/top-view-pepperoni-pizza-with-mushroom-sausages-bell-pepper-olive-corn-black-wooden_141793-2158.jpg?w=2000',
-                'restaurant_id' => 2,
+                'restaurant_id' => 5,
                 'visible' => true
             ],
 
@@ -106,7 +151,7 @@ class DishSeeder extends Seeder
                 'ingredients' => 'farina, mozzarella, basilico, pomodoro',
                 'description' => 'La pasta alla carbonara è un piatto caratteristico del Lazio e più in particolare di Roma, preparato con ingredienti popolari e dal gusto intenso. I tipi di pasta tradizionalmente più usati sono gli spaghetti e i rigatoni.',
                 'image' => 'https://img.freepik.com/free-photo/top-view-pepperoni-pizza-with-mushroom-sausages-bell-pepper-olive-corn-black-wooden_141793-2158.jpg?w=2000',
-                'restaurant_id' => 2,
+                'restaurant_id' => 5,
                 'visible' => true
             ],
 
@@ -116,7 +161,7 @@ class DishSeeder extends Seeder
                 'ingredients' => 'farina, mozzarella, basilico, pomodoro',
                 'description' => 'La pasta alla carbonara è un piatto caratteristico del Lazio e più in particolare di Roma, preparato con ingredienti popolari e dal gusto intenso. I tipi di pasta tradizionalmente più usati sono gli spaghetti e i rigatoni.',
                 'image' => 'https://img.freepik.com/free-photo/top-view-pepperoni-pizza-with-mushroom-sausages-bell-pepper-olive-corn-black-wooden_141793-2158.jpg?w=2000',
-                'restaurant_id' => 2,
+                'restaurant_id' => 5,
                 'visible' => true
             ],
 
