@@ -64,7 +64,7 @@ class DishSeeder extends Seeder
                 'name' => 'Bucatini alla amatriciana',
                 'price' => 14.99,
                 'ingredients' => 'pomodoro, guanciale, pasta',
-                'description' => "I bucatini all'Amatriciana sono uno dei piatti popolari e tradizionali romani più noti in Italia e nel mondo. Il nome deriverebbe dalla città di Amatrice, un paese che si trova nel Lazio, ai confini con l'Abruzzo, le Marche e l'Umbria, stretto tra i monti Sibillini a nord e il massiccio del Gran Sasso e dei Monti della Laga a sud.",
+                'description' => "I bucatini all'Amatriciana sono uno dei piatti popolari e tradizionali romani più noti in Italia e nel mondo. Il nome deriverebbe dalla città di Amatrice e l'Umbria.",
                 'image' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOu5Qkbek-g63T17p-z9viQO8lMRJ00w23IQ&usqp=CAU',
                 'restaurant_id' => 1,
                 'visible' => true
