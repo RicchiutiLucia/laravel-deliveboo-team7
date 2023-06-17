@@ -22,11 +22,11 @@ class UserSeeder extends Seeder
 
 
 
-        for ($i = 0; $i < 9; $i++) {
+        for ($i = 0; $i < 10; $i++) {
             $newuser = new User();
             $newuser->name = $faker->firstName();
             $newuser->email = $faker->email();
-            $newuser->password = bcrypt('carlo');
+            $newuser->password = bcrypt('gruppo7');
             // $newuser->role = 'owner';
             $newuser->save();
         }
