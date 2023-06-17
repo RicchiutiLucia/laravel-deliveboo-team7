@@ -24,7 +24,6 @@ class StoreRestaurantRequest extends FormRequest
     public function rules()
     {
         return [
-            
             'name' => 'required',
             'slug' => 'required',
             'address' => 'required',
