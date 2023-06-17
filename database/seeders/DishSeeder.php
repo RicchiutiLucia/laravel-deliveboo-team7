@@ -273,7 +273,7 @@ class DishSeeder extends Seeder
                 'name' => 'Tiramisù',
                 'price' => 7.99,
                 'ingredients' => 'mascartpone, savoiardi, caffè, uova, zucchero, cacao',
-                'description' => 'Il tiramisù è un dolce e prodotto agroalimentare tradizionale diffuso in tutto il territorio italiano, le cui origini sono dibattute e attribuite soprattutto al Veneto e al Friuli-Venezia Giulia. È un dessert al cucchiaio a base di savoiardi (oppure altri biscotti di consistenza friabile) inzuppati nel caffè e ricoperti di una crema, composta di mascarpone, uova e zucchero.',
+                'description' => 'Il tiramisù è un dolce e prodotto agroalimentare tradizionale diffuso in tutto il territorio italiano.',
                 'image' => 'https://www.melarossa.it/wp-content/uploads/2019/08/tiramis%C3%B9-storia-ricette.jpg?x86076',
                 'restaurant_id' => 9,
                 'visible' => true
