@@ -22,12 +22,11 @@ class CategoryController extends Controller
 
     /**
      * Show the form for creating a new resource.
-     *
+     *a
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        
     }
 
     /**
@@ -38,7 +37,6 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        
     }
 
     /**
@@ -49,7 +47,6 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-       
     }
 
     /**
@@ -60,7 +57,6 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-       
     }
 
     /**
@@ -72,7 +68,6 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-       
     }
 
     /**
@@ -83,6 +78,5 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-       
     }
 }
