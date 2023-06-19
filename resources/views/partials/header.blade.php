@@ -21,8 +21,12 @@
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav me-auto">
                 <li class="nav-item d-flex">
-                    <a class="nav-link" href="{{ url('/') }}">{{ __('Home') }}</a>
-                    <a class="nav-link" href="{{ route('admin.dishes.index', $dish->id) }}">Piatti</a>
+
+         
+
+                    <a class="nav-link" href="{{url('/') }}">{{ __('Home') }}</a>
+                    <a class="nav-link" href="{{ route('admin.dishes.index') }}">Piatti</a>
+
                 </li>
             </ul>
 
