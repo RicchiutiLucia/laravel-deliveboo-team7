@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
     <div id="plate_index" class="row justify-content-center pb-5">
-        <h1 class="col-12 text-center p-3 mb-5 shadow">
+        <h1 class=" text-center p-3 mb-5 shadow">
             LA TUA LISTA PIATTI
         </h1>
         @if ($dishes->count() > 0)
@@ -28,12 +28,19 @@
                                 @endif
                             </p>
                         </div>
-                        <div class="align-self-end col-12">
-                            <a href="{{ route('admin.dishes.show', $dish->slug) }}"
-                                class="btn btn-primary btn_modify mr-2">Dettagli</a>
+                        <div class="d-flex">
+                            <div class="my-2">
+                                <a href="{{ route('admin.dishes.show', $dish->slug) }}"class="btn btn-primary me-2 ">Dettagli</a>
+
+                            </div>
+                            <div class="my-2">
                                 <a href="{{ route('admin.dishes.edit', $dish->slug) }}"
-                                    class="btn btn-warning btn_modify mr-2">Modifica</a>
-                                <form class="form_delete_post" action="{{route('admin.dishes.destroy', ['dish' => $dish->slug])}}" method="POST">
+                                    class="btn btn-warning">Modifica</a>
+
+                            </div>
+                           
+                               
+                                <form class="form_delete_post my-2" action="{{route('admin.dishes.destroy', ['dish' => $dish->slug])}}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger">Elimina</button>

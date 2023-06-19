@@ -1,30 +1,25 @@
+
 @extends('layouts.app')
-
 @section('content')
-<div class="container">
-    <h2 class="fs-4 text-secondary my-4">
-        {{ __('Dashboard') }}
-    </h2>
-    <div class="row justify-content-center">
-        <div class="col">
-            <div class="card">
-                <div class="card-header">{{ __('User Dashboard') }}</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                    <div class="alert alert-success" role="alert">
-                        {{ session('status') }}
+    <div>
+        <div class="justify-content-center">
+            <div>
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title"> <h1> Benvenuto: {{$restaurant->name}} </h1>{{ Auth::user()->business_name }}</h5>
                     </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
+                    <div class="card-body">
+                        <p class="card-text">
+                            {{-- box alert registrazione effettuata con successo --}}
+                        <div class="alert alert-success" role="alert">
+                            Congratulazioni {{ Auth::user()->name }}, il login ha avuto successo.
+                        </div>
+                        </p>
+                        
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-
-<div>
-    <h1>{{$restaurant->name}}</h1>
-</div>
 @endsection
+
