@@ -25,24 +25,8 @@
 
         @include('partials.header')
 
-
         <main class="container">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-2">
-                        @include('partials.sidebar')
-                    </div>
-
-                    <div class="col-10">
-
-                        @yield('content')
-                    </div>
-
-                </div>
-               
-
-            </div>
-           
+            @yield('content')
         </main>
     </div>
 </body>
