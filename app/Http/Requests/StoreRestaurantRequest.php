@@ -25,7 +25,7 @@ class StoreRestaurantRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'slug' => 'required',
+            'slug' => 'nullable',
             'address' => 'required',
             'vat_number' => 'required',
             'user_id' => 'nullable|exists:users,id',

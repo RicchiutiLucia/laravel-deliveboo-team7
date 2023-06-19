@@ -46,32 +46,35 @@ class RestaurantController extends Controller
      */
     public function store(StoreRestaurantRequest $request)
     {   
-
+       
         
         $validated_data = $request->validated();
-        
+    
         $validated_data['slug'] = Restaurant::generateSlug($request->name);
+
        
+        
 
         $checkRestaurant = Restaurant::where('slug', $validated_data['slug'])->first();
         if ($checkRestaurant) {
             return back()->withInput()->withErrors(['slug' => 'Titolo giá in uso']);
         }
 
+  
+
 
         if ($request->hasFile('image')) {
             $path = Storage::put('cover', $request->image);
             $validated_data['image'] = $path;
         }
-        
+       
         $validated_data['user_id'] = Auth::id();
-
+      
         
         if ($request->has('categories')) {
             $newRestaurant = Restaurant::create($validated_data);
             $newRestaurant->categories()->attach($request->categories);
         }
-
   
         return redirect()->route('admin.dashboard');
     }
