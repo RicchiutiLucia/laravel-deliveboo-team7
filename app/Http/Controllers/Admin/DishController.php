@@ -9,7 +9,9 @@ use App\Http\Requests\UpdateDishRequest;
 use Illuminate\Support\Facades\Storage;
 
 use App\Models\Dish;
+use App\Models\Restaurant;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DishController extends Controller
 {
@@ -20,7 +22,10 @@ class DishController extends Controller
      */
     public function index()
     {
-       $dishes = Dish::all();
+        
+       $dishes = Dish::where('restaurant_id', Auth::user()->id)->get();
+    
+       
         return view('admin.dishes.index', compact('dishes'));
        
     }
@@ -45,7 +50,7 @@ class DishController extends Controller
     public function store(StoreDishRequest $request)
     {
         $validated_data = $request->validated();
-        $validated_data['slug'] = Dish::generateSlug($request->name);
+        $validated_data['slug'] = `Dish::generateSlug($request->name)-$validated_data->id`;
 
         $checkDish = Dish::where('slug', $validated_data['slug'])->first();
         if ($checkDish) {

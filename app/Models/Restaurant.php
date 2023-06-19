@@ -22,7 +22,9 @@ class Restaurant extends Model
         'user_id'
     ];
 
-
+    /*public static function getId($id) {
+        return $this->id = $id;
+    }*/ 
     public static function generateSlug(string $name) {
         return Str::slug($name, '-');
     }   
