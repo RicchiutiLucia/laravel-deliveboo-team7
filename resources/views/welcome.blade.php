@@ -1,4 +1,4 @@
-@extends('layouts.guest')
+@extends('layouts.app')
 @section('content')
 
     <h1 class="text-center py-5!!">Benvenuto in DeliveBoo</h1>
