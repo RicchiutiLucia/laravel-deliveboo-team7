@@ -27,11 +27,10 @@ class UpdateDishRequest extends FormRequest
             'name' => 'required',
             'price' => 'required',
             'slug' => 'nullable',
-            'ingredients' => 'nullable',
+            'ingredients' => 'required',
             'description' => 'nullable',
             'image' => 'nullable|image|max:1024',
-            'restaurant_id' => 'required',
-            'visible' => 'required'
+            'visible' => 'nullable'
         ];
     }
 }
