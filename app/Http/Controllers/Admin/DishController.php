@@ -22,12 +22,11 @@ class DishController extends Controller
      */
     public function index()
     {
-        
-       $dishes = Dish::where('restaurant_id', Auth::user()->id)->get();
-    
-       
+
+        $dishes = Dish::where('restaurant_id', Auth::user()->id)->get();
+
+
         return view('admin.dishes.index', compact('dishes'));
-       
     }
 
     /**
@@ -37,7 +36,7 @@ class DishController extends Controller
      */
     public function create()
     {
-        
+
         return view('admin.dishes.create');
     }
 
@@ -50,7 +49,11 @@ class DishController extends Controller
     public function store(StoreDishRequest $request)
     {
         $validated_data = $request->validated();
-        $validated_data['slug'] = `Dish::generateSlug($request->name)-$validated_data->id`;
+        $validated_data['slug'] = Dish::generateSlug($request->name);
+
+
+
+
 
         $checkDish = Dish::where('slug', $validated_data['slug'])->first();
         if ($checkDish) {
@@ -61,8 +64,12 @@ class DishController extends Controller
             $path = Storage::put('cover', $request->image);
             $validated_data['image'] = $path;
         }
+        $validated_data['restaurant_id'] = Auth::user()->id;
 
         $newDish = Dish::create($validated_data);
+
+        $validated_data['slug'] = $validated_data['slug']  . '-' . $newDish['id'];
+        $newDish->update($validated_data);
 
         return redirect()->route('admin.dishes.show', ['dish' => $newDish->slug])->with('status', 'Nuovo Piatto creato!');
     }
@@ -98,6 +105,7 @@ class DishController extends Controller
      */
     public function update(UpdateDishRequest $request, Dish $dish)
     {
+
         $validated_data = $request->validated();
         $validated_data['slug'] = Dish::generateSlug($request->name);
 
@@ -107,13 +115,17 @@ class DishController extends Controller
         }
 
         if ($request->hasFile('image')) {
-            if ($dish->image){
+            if ($dish->image) {
                 Storage::delete($dish->image);
             }
 
             $path = Storage::put('cover', $request->image);
             $validated_data['image'] = $path;
         }
+
+
+        $validated_data['slug'] = $validated_data['slug']  . '-' . $dish->id;
+
 
         $dish->update($validated_data);
 

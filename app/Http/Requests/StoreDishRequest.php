@@ -24,19 +24,19 @@ class StoreDishRequest extends FormRequest
     public function rules()
     {
         return [
-            
+
         'name' => 'required',
         'price' => 'required',
         'slug' => 'nullable',
         'ingredients' => 'nullable',
         'description' => 'nullable',
         'image' => 'nullable|image|max:1024',
-        'restaurant_id' => 'required',
+        'restaurant_id' => 'nullable|exists:restaurants,id',
         'visible' => 'required'
-        
+
         ];
 
-     
-       
+
+
     }
 }

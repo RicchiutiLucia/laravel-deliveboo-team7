@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Dish extends Model
 {
@@ -11,6 +12,7 @@ class Dish extends Model
 
     protected $fillable = [
         'name',
+        'slug',
         'price',
         'ingredients',
         'description',
@@ -19,11 +21,18 @@ class Dish extends Model
         'visible'
     ];
 
-    public function restaurant() {
+    public static function generateSlug(string $name)
+    {
+        return Str::slug($name, '-');
+    }
+
+    public function restaurant()
+    {
         return $this->BelongsTo(Restaurant::class);
     }
 
-    public function orders() {
+    public function orders()
+    {
         return $this->belongsToMany(Order::class);
     }
 }

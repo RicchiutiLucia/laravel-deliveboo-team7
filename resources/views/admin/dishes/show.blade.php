@@ -14,16 +14,15 @@
         <h3 class="my-4">{{ $dish->price }}</h3>
         <div><strong>Ingredienti:</strong>{{ $dish->ingredients }}</div>
         <div><strong>Descrizione: </strong>{{ $dish->description }}</div>
-        @if($dish->image)
-        <div class="text-center my-4">
-            <img class="img-thumbnail " width="300" src="{{ asset('storage/' . $dish['image'])}}"/>
-        </div>
+        @if ($dish->image)
+            <div class="text-center my-4">
+                <img class="img-thumbnail " width="300" src="{{ asset('storage/' . $dish['image']) }}" />
+            </div>
         @endif
 
 
-        <a href="{{ route('admin.dishes.index', $dish) }}" class="btn btn-primary">
+        <a href="{{ route('admin.dishes.index') }}" class="btn btn-primary">
             Torna ai piatti
         </a>
     </div>
 @endsection
-
