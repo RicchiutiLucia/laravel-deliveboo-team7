@@ -14,26 +14,33 @@ use PharIo\Manifest\Author;
 
 class ChartController extends Controller
 {
-    public function index()
+  public function index()
 
-    {
-      $dishOrder = DB::table('dish_order')
+  {
+    $dishOrders = DB::table('dish_order')
       ->join('dishes', 'dishes.id', '=', 'dish_order.dish_id')
-      ->select('dish_id','order_id', 'quantity')
-      ->where('restaurant_id',  Auth::user()->id)->get();
-   
-      
-      //CHIAMATA MESI
-      $groups = Order::where('id',  $dishOrder[0]->order_id)
+      ->select('dish_order.dish_id', 'dish_order.order_id', 'dish_order.quantity')
+      ->where('dishes.restaurant_id',  Auth::user()->id)->get();
+    $arr = [];
+
+    foreach ($dishOrders as $key => $order) {
+
+      $groups = Order::where('id', $order->order_id)
         ->select(DB::raw('DATE_FORMAT(created_at, "%Y-%m") as month'), DB::raw('COUNT(id) as tot'))
         ->orderBy('month', "asc")
         ->groupBy('month')
         ->pluck('tot', 'month')->all();
-  
-      $chartMonth =  new Chart;
-      $chartMonth->labels = (array_keys($groups));
-      $chartMonth->dataset = (array_values($groups));
-  /*
+
+      $arr[] = [
+        'x' => key($groups),
+        'y' => $order->quantity
+      ];
+    }
+    //CHIAMATA MESI
+
+    $chartMonth =  new Chart;
+
+    /*
       //CHIAMATA ANNI
       $groups = Order::where("restaurant_id", $rest)
         ->select(DB::raw('DATE_FORMAT(created_at, "%Y") as year'), DB::raw('COUNT(id) as tot'))
@@ -68,8 +75,7 @@ class ChartController extends Controller
       $chartPriceYear->dataset = (array_values($groups));
   
   */
-  
-      return view('admin.charts.index', compact('chartMonth'));
-    }
-  }
 
+    return view('admin.charts.index', compact('arr'));
+  }
+}
