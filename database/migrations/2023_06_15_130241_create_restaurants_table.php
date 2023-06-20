@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('vat_number',11);
             $table->text('description',2000)->nullable();
             $table->string('image')->nullable();
-            $table->string('phone',100);
+            $table->string('phone',15);
             $table->unsignedBigInteger('user_id')->references('id')->on('users');
             $table->timestamps();
         });
