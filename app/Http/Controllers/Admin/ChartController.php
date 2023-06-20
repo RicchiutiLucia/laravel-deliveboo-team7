@@ -17,27 +17,23 @@ class ChartController extends Controller
     public function index()
 
     {
-      $dishOrders = DB::select('SELECT dish_id, order_id, quantity FROM dish_order');
-      dd($dishOrders);
-      foreach ($dishOrders as $dishOrder) {
-        $dishId = $dishOrder->dish_id;
-        $orderId = $dishOrder->order_id;
-        $quantity = $dishOrder->quantity;
-        
-    }
+      $dishOrder = DB::table('dish_order')
+      ->join('dishes', 'dishes.id', '=', 'dish_order.dish_id')
+      ->select('dish_id','order_id', 'quantity')
+      ->where('restaurant_id',  Auth::user()->id)->get();
    
-  /*
+      
       //CHIAMATA MESI
-      $groups = Order::where('id', $dishOrder->order_id)
+      $groups = Order::where('id',  $dishOrder[0]->order_id)
         ->select(DB::raw('DATE_FORMAT(created_at, "%Y-%m") as month'), DB::raw('COUNT(id) as tot'))
         ->orderBy('month', "asc")
         ->groupBy('month')
         ->pluck('tot', 'month')->all();
   
-      $chartMonth = new Chart;
+      $chartMonth =  new Chart;
       $chartMonth->labels = (array_keys($groups));
       $chartMonth->dataset = (array_values($groups));
-  
+  /*
       //CHIAMATA ANNI
       $groups = Order::where("restaurant_id", $rest)
         ->select(DB::raw('DATE_FORMAT(created_at, "%Y") as year'), DB::raw('COUNT(id) as tot'))
@@ -73,7 +69,7 @@ class ChartController extends Controller
   
   */
   
-      return view('admin.charts.index', compact('chartMonth', 'chartYear', 'chartPriceMonth', 'chartPriceYear'));
+      return view('admin.charts.index', compact('chartMonth'));
     }
   }
 
