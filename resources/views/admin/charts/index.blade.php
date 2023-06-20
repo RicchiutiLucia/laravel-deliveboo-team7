@@ -2,43 +2,71 @@
 
 @section('content')
   {{-- CHARTJS --}}
-  <div class="container chart_bgc border rounded pb-3">
-    <div class="row px-3 pt-3 mb-4">
-      <h2 class="col-12 mb-3">Numero di ordini</h2>
-      <div class="col-12 col-lg-6 my-2">
+
         <canvas id="userChart" class="rounded shadow"></canvas>
-        <div class="mt-4 text-center">
-          <label for="startDate">Da:</label>
-          <input onchange="filterData()" type="month" id="startDate">
-          <label class="ml-3" for="endDate">A:</label>
-          <input onchange="filterData()" type="month" id="endDate">
-        </div>
-      </div>
 
-      {{-- <div class="col-12 col-lg-6">
-        <canvas id="userChartyear" class="rounded shadow"></canvas>
-      </div> --}}
-    </div>
-
-    {{-- <div class="row px-3 pt-3">
-      <h2 class="col-12 mb-3">Ammontare delle vendite</h2>
-      <div class="col-12 col-lg-6 container mb-5">
-        <canvas id="ChartPriceMonth" class="rounded shadow"></canvas>
-      </div>
-
-      <div class="col-12 col-lg-6 container">
-        <canvas id="chartPriceYear" class="rounded shadow"></canvas>
-      </div>
-    </div> --}}
-  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
   <script async>
-    console.log({!!$chartMonth!!});
-    const dates = {!! json_encode($chartMonth->labels) !!};
-    const dataPoints = {!! json_encode($chartMonth->dataset) !!};
+    console.log({!! json_encode($arr) !!})
+    let arr = {!! json_encode($arr) !!}
 
-    let inpStartDate = document.getElementById('startDate').value = dates[0];
+    const xyValues = [
+  {x:50, y:7},
+  {x:60, y:8},
+  {x:70, y:8},
+  {x:80, y:9},
+  {x:90, y:9},
+  {x:100, y:9},
+  {x:110, y:10},
+  {x:120, y:11},
+  {x:130, y:14},
+  {x:140, y:14},
+  {x:150, y:15}
+];
+
+
+    var data = {
+  labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"],
+  datasets: [{
+    label: "Dataset #1",
+    backgroundColor: "rgba(255,99,132,0.2)",
+    borderColor: "rgba(255,99,132,1)",
+    borderWidth: 2,
+    hoverBackgroundColor: "rgba(255,99,132,0.4)",
+    hoverBorderColor: "rgba(255,99,132,1)",
+    data: arr,
+  }]
+};
+
+var options = {
+  maintainAspectRatio: false,
+  scales: {
+    y: {
+      stacked: true,
+      grid: {
+        display: true,
+        color: "rgba(255,99,132,0.2)"
+      }
+    },
+    x: {
+      grid: {
+        display: false
+      }
+    }
+  }
+};
+
+const myChart = new Chart("userChart", {
+      type: 'bar',
+      options: options,
+      data: data
+    });
+
+
+    
+
+    /*let inpStartDate = document.getElementById('startDate').value = dates[0];
     // console.log(inpStartDate)
     let inpEndDate = document.getElementById('endDate').value = dates[dates.length - 1];
 
@@ -50,10 +78,10 @@
 
       // The data for our dataset
       data: {
-        labels: dates, // Pariole sotto la tabella
+        labels: arr[0].data, // Pariole sotto la tabella
         datasets: [{
           label: 'N°ordini / mese',
-          data: dataPoints,
+          data: arr[0].id[0],
 
           // Bisogna trovare un modo assegnare un colore per ogni elemento con un ciclo
           backgroundColor: [
@@ -201,6 +229,6 @@
     function setCharAt(str, index, chr) {
       if (index > str.length - 1) return str;
       return str.substring(0, index) + chr + str.substring(index + 1);
-    }
+    }*/
   </script>
 @endsection
