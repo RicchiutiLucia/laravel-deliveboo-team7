@@ -25,7 +25,7 @@
 
 
                     <td class="d-flex flex-nowrap">
-                        <a class="btn btn-primary" href="{{ /* route('admin.orders.show', $order->id) */ }}">VEDI</a>
+                         {{-- <a class="btn btn-primary" href=" {{ route('admin.orders.show', $order->id)}}">VEDI</a> --}}
                     </td>
                 </tr>
             @endforeach
