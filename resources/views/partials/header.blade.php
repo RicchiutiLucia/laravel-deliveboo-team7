@@ -22,10 +22,14 @@
             <ul class="navbar-nav me-auto">
                 <li class="nav-item d-flex">
 
-         
 
-                    <a class="nav-link" href="{{url('/') }}">{{ __('Home') }}</a>
+
+                    <a class="nav-link" href="{{ url('/') }}">{{ __('Home') }}</a>
                     <a class="nav-link" href="{{ route('admin.dishes.index') }}">Piatti</a>
+                    <a class="nav-link" href="{{ route('admin.dishes.create') }}">Crea nuovo piatto</a>
+                    <a class="nav-link" href="{{ route('admin.orders.index') }}">Ordini</a>
+
+
 
                 </li>
             </ul>
