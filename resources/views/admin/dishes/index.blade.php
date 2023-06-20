@@ -11,7 +11,7 @@
                 <div class="card m-3 shadow" style="width: 20rem;">
                     <div class="wrapper_img p-3">
                         @if ($dish->image)
-                            <img src="{{ $dish->image }}" class="card-img-top h-100 w-100" alt="{{ $dish->name }}">
+                            <img src="{{asset('storage/' . $dish->image)}}" class="card-img-top h-100 w-100" alt="{{ $dish->name }}">
                         @else
                             Ciccio bello
                         @endif
@@ -22,10 +22,11 @@
                         <div class="col-12">
                             <p class="card-text d-inline-block mb-2 mr-2">Prezzo: {{ $dish->price }}€</p>
                             <p class="card-text d-inline-block">
+
                                 @if ($dish->visible)
-                                    <p class="badge badge-success text-white mb-3">Visibile</p>
+                                    <p class="my-3 rounded-pill text-bg-success text-center">Visibile</p>
                                 @else
-                                    <p class="badge badge-danger text-white mb-3">Non Visibile</p>
+                                    <p class="mb-y rounded-pill text-bg-danger text-center">Nascosto</p>
                                 @endif
                             </p>
                         </div>
