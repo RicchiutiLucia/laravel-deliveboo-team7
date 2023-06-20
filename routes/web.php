@@ -6,6 +6,7 @@ use App\http\Controllers\Admin\DishController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\RestaurantController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Models\Restaurant;
 
 /*
@@ -42,7 +43,7 @@ Route::middleware(['auth', 'verified'])
         ]);
 
         Route::resource('restaurants', RestaurantController::class)->parameters(['restaurants' => 'restaurant:slug']);
-
+        Route::resource('orders', OrderController::class);
     });
 
 
