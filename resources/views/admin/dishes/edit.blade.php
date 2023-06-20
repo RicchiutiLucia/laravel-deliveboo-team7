@@ -56,12 +56,14 @@
                         <div>
 
                             <div class="pb-3">
-                                <div for="image" class="form-label">{{ old('image', $dish->image) }}</div>
-
-
-
+                                <label for="image" class="form-label">Immagine del piatto</label>
+                                <img class="img-thumbnail my-img-thumb" src="{{ $dish->image }}" alt="" />
+                                <input type="file" class="form-control @error('image') is-invalid @enderror "
+                                    id="image" name="image">
                                 @error('image')
-                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
                                 @enderror
                             </div>
                         </div>
@@ -69,7 +71,7 @@
 
                     <div class="d-flex">
                         <a class="btn btn-primary back" href="{{ route('admin.dishes.index') }}">Torna ai tuoi piatti</a>
-                        <button type="submit" class="btn btn-primary mx-3">Submit</button>
+                        <button type="submit" class="btn btn-primary mx-3">Salva</button>
 
                     </div>
                 </div>
