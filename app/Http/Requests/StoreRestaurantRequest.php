@@ -24,13 +24,13 @@ class StoreRestaurantRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
+            'name' => ['required', 'unique:restaurants,name', 'max:200'],
             'slug' => 'nullable',
-            'address' => 'required',
-            'vat_number' => 'required',
-            'user_id' => 'nullable|exists:users,id',
-            'phone' => 'required',
-            'description' => 'nullable',
+            'address' => ['required', 'max:100'],
+            'vat_number' => ['required', 'integer', 'digits:11'],
+            'user_id' => ['nullable|exists:users,id'],
+            'phone' => ['required', 'min_digits:10' , 'max:15'],
+            'description' => ['nullable', 'max:2000'],
         ];
     }
 }

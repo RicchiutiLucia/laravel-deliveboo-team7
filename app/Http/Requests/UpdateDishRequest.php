@@ -24,13 +24,13 @@ class UpdateDishRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
-            'price' => 'required',
+            'name' => ['required', 'max:200'],
+            'price' => ['required', 'decimal:2'],
             'slug' => 'nullable',
-            'ingredients' => 'required',
-            'description' => 'nullable',
+            'ingredients' => ['nullable', 'max:400'],
+            'description' => ['nullable', 'max:2000'],
             'image' => 'nullable|image|max:1024',
-            'visible' => 'nullable'
+            'visible' => ['nullable', 'boolean']
         ];
     }
 }
