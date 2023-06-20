@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\Admin\CategoryController;
+
 use App\Http\Controllers\ProfileController;
 use App\http\Controllers\Admin\DishController;
+use App\http\Controllers\Admin\ChartController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\RestaurantController;
@@ -44,6 +46,8 @@ Route::middleware(['auth', 'verified'])
 
         Route::resource('restaurants', RestaurantController::class)->parameters(['restaurants' => 'restaurant:slug']);
         Route::resource('orders', OrderController::class);
+        Route::resource('charts', ChartController::class);
+       
     });
 
 
