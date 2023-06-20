@@ -12,7 +12,7 @@
         <div class="card m-3 shadow" style="width: 25rem;">
             <div class="wrapper_img p-3">
                 @if ($dish->image)
-                    <img src="{{ $dish->image }}" class="card-img-top h-100 w-100" alt="{{ $dish->name }}">
+                    <img src="{{asset('storage/' . $dish->image)}}" class="card-img-top h-100 w-100" alt="{{ $dish->name }}">
                 @else
                 @endif
             </div>
