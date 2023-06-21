@@ -49,7 +49,7 @@ class DishController extends Controller
     public function store(StoreDishRequest $request)
     {
         $validated_data = $request->validated();
-        $validated_data['slug'] = Dish::generateSlug($request->name);
+        $validated_data['slug'] = Dish::generateSlug($request->name) . '-' . Auth::user()->id;
 
 
 
@@ -68,7 +68,7 @@ class DishController extends Controller
 
         $newDish = Dish::create($validated_data);
 
-        $validated_data['slug'] = $validated_data['slug']  . '-' . $newDish['id'];
+       // $validated_data['slug'] = $validated_data['slug']  . '-' . $newDish['id'];
         $newDish->update($validated_data);
 
         return redirect()->route('admin.dishes.show', ['dish' => $newDish->slug])->with('status', 'Nuovo Piatto creato!');
@@ -82,7 +82,12 @@ class DishController extends Controller
      */
     public function show(Dish $dish)
     {
-        return view('admin.dishes.show', compact('dish'));
+        if(Auth::user()->id == $dish->restaurant_id){
+            return view('admin.dishes.show', compact('dish'));
+        } else {
+           // return view();
+        }
+        
     }
 
     /**
@@ -93,7 +98,14 @@ class DishController extends Controller
      */
     public function edit(Dish $dish)
     {
-        return view('admin.dishes.edit', compact('dish'));
+        {
+            if(Auth::user()->id == $dish->restaurant_id){
+                return view('admin.dishes.show', compact('dish'));
+            } else {
+               // return view();
+            }
+            
+        }
     }
 
     /**
