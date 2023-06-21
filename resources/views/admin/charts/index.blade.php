@@ -11,8 +11,6 @@
     console.log({!! json_encode($arr) !!})
     let arr = {!! json_encode($arr) !!}
 
-let months = []
-
 let count = {}
 
 arr.forEach((el, i) => {
@@ -20,14 +18,21 @@ arr.forEach((el, i) => {
 
 });
 
-Object.keys(count).map((key, i) => {
-  
-})
+let quantity = []
 
-  console.log(Object.keys(count).sort());
+
+const newCount = Object.keys(count).sort().reduce(
+  (obj, key) => { 
+    obj[key] = count[key]; 
+    return obj;
+  }, 
+  {}
+);
+
+  
 
     var data = {
-      labels: Object.keys(count).sort(),
+      labels: Object.keys(newCount),
       datasets: [{
         label: "Ordini",
         backgroundColor: "rgba(255,99,132,0.2)",
@@ -35,7 +40,7 @@ Object.keys(count).map((key, i) => {
         borderWidth: 2,
         hoverBackgroundColor: "rgba(255,99,132,0.4)",
         hoverBorderColor: "rgba(255,99,132,1)",
-        data: Object.values(count).sort(),
+        data: Object.values(newCount)
       }]
     };
 
@@ -53,10 +58,10 @@ var options = {
         stacked: true
     },
     yAxes: [{
-                        ticks: {
-                            beginAtZero: true
-                        }
-                    }]
+        ticks: {
+            beginAtZero: true
+        }
+    }]
   }
 
 };

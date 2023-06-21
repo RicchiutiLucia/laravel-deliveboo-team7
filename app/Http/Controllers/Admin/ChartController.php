@@ -23,7 +23,6 @@ class ChartController extends Controller
       ->where('dishes.restaurant_id',  Auth::user()->id)->get();
 
     $arr = [];
-    $dataOrders = [];
 
     foreach ($dishOrders as $key => $order) {
 
@@ -35,15 +34,10 @@ class ChartController extends Controller
 
       $data = DB::table('orders')->where('id', $order->order_id)->value('created_at');
 
-
-      $dataOrders[] = $data;
-
-      if (!in_array(key($groups), $arr)) {
-        $arr[] = [
-          'x' => key($groups),
-          'y' => count($dishOrders)
-        ];
-      }
+      $arr[] = [
+        'x' => key($groups),
+        'y' => count($dishOrders)
+      ];
     }
     //CHIAMATA MESI
 
