@@ -32,124 +32,147 @@ deleteButtons.forEach(button => {
 
 // funzione di validazione per il form di Restaurant
 
- function validateFormRestaurant() {
-
+function validateFormRestaurant() {
+    let status = true;
     const name = document.getElementById('name').value;
     const address = document.getElementById('address').value;
     const vat_number = document.getElementById('vat_number').value;
     const phone = document.getElementById('phone').value;
     const categories = document.querySelectorAll('input[type = "checkbox"]');
     const category = checkCategory(categories);
-    if( name === ''){
+    if (name === '') {
 
-        return false
-    }
-    if( address === ''){
-        return false
-    }
-    if( vat_number === ''){
-        return false
-    }
+        status = false
+        displayError('requiredName');
 
-    if( vat_number === ''){
-        return false
     }
+    if (address === '') {
 
-    if( phone === ''){
-        return false
+        status = false
+        displayError('requiredAddress');
     }
-    if( category === ''){
-        return false
+    if (vat_number === '') {
+
+        status = false
+        displayError('requiredVat');
+
     }
 
 
-    return true;
+    if (phone === '') {
 
-   };
+        status = false
+        displayError('requiredPhone');
 
-   if(document.getElementById('restaurant_submit')){
+    }
+    if (category.length == 0) {
+        console.log(category)
+        status = false
+        displayError('requiredCategory');
+
+    }
+
+
+    return status;
+
+};
+
+if (document.getElementById('restaurant_submit')) {
+
     const submitButton = document.getElementById('restaurant_submit');
-    submitButton.addEventListener('click', function(event){
+    submitButton.addEventListener('click', function (event) {
         event.preventDefault();
 
+        const errors = document.querySelectorAll('.text-danger');
+        errors.forEach(error => { error.classList.add('d-none') })
 
-        if(validateFormRestaurant()){
+
+        if (validateFormRestaurant()) {
             const form = document.getElementById('create_restaurant_form')
 
             console.log('form valido');
             form.submit();
-        };
-        if(validateFormDish()){
-            const form =  document.getElementsByClassName('my-dish-submit')
-
         }
 
-       });
 
-   };
+    });
+
+};
 
 
-    // Serve a controllare se delle checkbox sono spuntate
-    function checkCategory(categories){
+// Serve a controllare se delle checkbox sono spuntate
+function checkCategory(categories) {
     const category = [];
-     categories.forEach(i=>{if(i.checked){
-        category.push(i) ;
+    categories.forEach(i => {
+        if (i.checked) {
+            category.push(i);
 
-    }
-    })
-        return category
-    }
-
-
-    //  funzione di validazione per il form di Dish
-
-     function validateFormDish() {
-
-         const nameDish = document.querySelector('.my-dish-name').value;
-         const price = document.querySelector('.my-dish-price').value;
-
-         if( nameDish === ''){
-             return false
-         }
-         if( price === ''){
-             return false
-         }
-         return true
         }
-        if(document.querySelector('.my-dish-submit')){
-            console.log('ciao')
-            const submitButtonDish = document.querySelector('.my-dish-submit');
-            submitButtonDish.addEventListener('click', function(event){
-                event.preventDefault();
+    })
+    return category
+}
+
+
+//  funzione di validazione per il form di Dish
+
+function validateFormDish() {
+    let status = true;
+
+    const nameDish = document.querySelector('.my-dish-name').value;
+    const price = document.querySelector('.my-dish-price').value;
+
+    if (nameDish === '') {
+
+        status = false;
+        displayError('requiredDishName');
+    }
+    if (price === '') {
+
+        status = false
+        displayError('requiredDishPrice');
+
+    }
+
+    return status
+}
+
+if (document.querySelector('.my-dish-submit')) {
+
+    const submitButtonDish = document.querySelector('.my-dish-submit');
+    submitButtonDish.addEventListener('click', function (event) {
+        event.preventDefault();
+
+        const errors = document.querySelectorAll('.text-danger');
+        errors.forEach(error => { error.classList.add('d-none') })
 
 
 
-                if(validateFormDish()){
-                    const form = document.querySelector('.my-dish-form')
-                    form.submit();
+        if (validateFormDish()) {
+            const form = document.querySelector('.my-dish-form')
+            form.submit();
 
-                };
+        };
 
-               });
+    });
 
-           };
-
-        // const submitButtonDish = document.getElementsByClassName('my-dish-submit');
-        // submitButtonDish.addEventListener('click', function(event){
-        //  event.preventDefault();
-
-        //  if(validateFormDish()){
-        //      console.log('form valido')
-        //  }
-
-        // });
+};
 
 
+//bottone di cancellazione 
 
-        const btnDelete = document.getElementById('btn-delete');
+if (document.getElementById('btn-delete')) {
+    const btnDelete = document.getElementById('btn-delete')
+    btnDelete.addEventListener('click', function () {
+        const formDelete = document.getElementById('form-delete');
+        formDelete.submit();
+    });
+}
 
-        btnDelete.addEventListener('click', function () {
-            console.log('ciaooooooo');
-            const formDelete = document.getElementById('form-delete');
-            formDelete.submit();
-        });
+//funzione per far comparire gli errori
+
+function displayError(error) {
+    const errorMessage = document.getElementById(error);
+    errorMessage.classList.remove('d-none')
+
+}
+
