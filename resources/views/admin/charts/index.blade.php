@@ -4,7 +4,7 @@
   {{-- CHARTJS --}}
 
         <canvas id="userChart" class="rounded shadow"></canvas>
-  <h1>guadgno total: {{$tot}}</h1>
+    <h1>guadagno totale: {{$tot}}€</h1>
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
   <script async>
