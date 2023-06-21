@@ -2,7 +2,7 @@
 @extends('layouts.app')
 @section('content')
     <div>
-        <div class="justify-content-center">
+        <div class="justify-content-center py-5">
             <div>
                 <div class="card">
                     <div class="card-header">

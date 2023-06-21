@@ -2,10 +2,12 @@
 
 
 @section('content')
-    <section id="" class="container-fluid">
+    <div class="d-flex container-fluid justify-content-center">
+
+   
 
         <form action="{{ route('admin.dishes.update', ['dish' => $dish->slug]) }}" method="POST" enctype="multipart/form-data"
-            class="my-dish-form">
+            class="my-dish-form col-md-6 ">
 
         @if ($errors->any())
             <div class="alert alert-danger" role="alert">
@@ -21,7 +23,7 @@
 
             @csrf
             @method('PUT')
-            <div class="d-flex">
+            <div>
                 <div class="p-3 ">
                     <div class=" py-3 align-items-center">
                         <h1>Nome: {{ $dish->name }}</h1>
@@ -115,6 +117,6 @@
             @csrf
             @method('DELETE')
         </form>
-    </section>
+    </div>
 
 @endsection

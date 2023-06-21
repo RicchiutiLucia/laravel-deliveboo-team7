@@ -2,18 +2,18 @@
 
 @section('content')
 
-<div class="container-fluid py-5">
-    @if ($errors->any())
-    <div class="alert alert-danger" role="alert">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
+<div class="container-fluid  d-flex justify-content-center py-5">
+            @if ($errors->any())
+            <div class="alert alert-danger" role="alert">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
 
-<form method="POST" action="{{ route('admin.dishes.store') }}" enctype="multipart/form-data" class="my-dish-form">
+<form method="POST" action="{{ route('admin.dishes.store') }}" enctype="multipart/form-data" class="my-dish-form col-md-6">
 
     @csrf
 

@@ -24,9 +24,9 @@
                             <p class="card-text d-inline-block">
 
                                 @if ($dish->visible)
-                                    <p class="my-3 rounded-pill text-bg-success text-center">Visibile</p>
+                                    <p class="my-3 mx-3 badge rounded-pill text-bg-success text-center">Visibile</p>
                                 @else
-                                    <p class="mb-y rounded-pill text-bg-danger text-center">Nascosto</p>
+                                    <p class="my-3 mx-3 badge rounded-pill text-bg-danger text-center">Nascosto</p>
                                 @endif
                             </p>
                         </div>
