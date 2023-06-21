@@ -21,20 +21,29 @@ class ChartController extends Controller
       ->join('dishes', 'dishes.id', '=', 'dish_order.dish_id')
       ->select('dish_order.dish_id', 'dish_order.order_id', 'dish_order.quantity')
       ->where('dishes.restaurant_id',  Auth::user()->id)->get();
+
     $arr = [];
+    $dataOrders = [];
 
     foreach ($dishOrders as $key => $order) {
 
       $groups = Order::where('id', $order->order_id)
-        ->select(DB::raw('DATE_FORMAT(created_at, "%Y-%m") as month'), DB::raw('COUNT(id) as tot'))
+        ->select(DB::raw('DATE_FORMAT(created_at, "%m-%Y") as month'), DB::raw('COUNT(id) as tot'))
         ->orderBy('month', "asc")
         ->groupBy('month')
         ->pluck('tot', 'month')->all();
 
-      $arr[] = [
-        'x' => key($groups),
-        'y' => $order->quantity
-      ];
+      $data = DB::table('orders')->where('id', $order->order_id)->value('created_at');
+
+
+      $dataOrders[] = $data;
+
+      if (!in_array(key($groups), $arr)) {
+        $arr[] = [
+          'x' => key($groups),
+          'y' => count($dishOrders)
+        ];
+      }
     }
     //CHIAMATA MESI
 

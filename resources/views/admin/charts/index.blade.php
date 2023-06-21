@@ -11,33 +11,33 @@
     console.log({!! json_encode($arr) !!})
     let arr = {!! json_encode($arr) !!}
 
-    const xyValues = [
-  {x:50, y:7},
-  {x:60, y:8},
-  {x:70, y:8},
-  {x:80, y:9},
-  {x:90, y:9},
-  {x:100, y:9},
-  {x:110, y:10},
-  {x:120, y:11},
-  {x:130, y:14},
-  {x:140, y:14},
-  {x:150, y:15}
-];
+let months = []
 
+let count = {}
+
+arr.forEach((el, i) => {
+  count[el.x] = (count[el.x] || 0) + 1
+
+});
+
+Object.keys(count).map((key, i) => {
+  
+})
+
+  console.log(Object.keys(count).sort());
 
     var data = {
-  labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"],
-  datasets: [{
-    label: "Dataset #1",
-    backgroundColor: "rgba(255,99,132,0.2)",
-    borderColor: "rgba(255,99,132,1)",
-    borderWidth: 2,
-    hoverBackgroundColor: "rgba(255,99,132,0.4)",
-    hoverBorderColor: "rgba(255,99,132,1)",
-    data: arr,
-  }]
-};
+      labels: Object.keys(count).sort(),
+      datasets: [{
+        label: "Ordini",
+        backgroundColor: "rgba(255,99,132,0.2)",
+        borderColor: "rgba(255,99,132,1)",
+        borderWidth: 2,
+        hoverBackgroundColor: "rgba(255,99,132,0.4)",
+        hoverBorderColor: "rgba(255,99,132,1)",
+        data: Object.values(count).sort(),
+      }]
+    };
 
 var options = {
   maintainAspectRatio: false,
@@ -50,11 +50,15 @@ var options = {
       }
     },
     x: {
-      grid: {
-        display: false
-      }
-    }
+        stacked: true
+    },
+    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
   }
+
 };
 
 const myChart = new Chart("userChart", {
@@ -62,6 +66,8 @@ const myChart = new Chart("userChart", {
       options: options,
       data: data
     });
+
+    
 
 
     
