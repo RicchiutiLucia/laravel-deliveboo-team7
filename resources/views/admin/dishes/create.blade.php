@@ -13,14 +13,15 @@
         </div>
     @endif
 
-    <form method="POST" action="{{ route('admin.dishes.store') }}" enctype="multipart/form-data">
+    <form method="POST" action="{{ route('admin.dishes.store') }}" enctype="multipart/form-data" class="my-dish-form">
 
         @csrf
 
         <div class="mb-3">
-            <label for="title" class="form-label">Nome del piatto</label>
-            <input type="text" class="form-control @error('title') is-invalid @enderror " id="name" name="name">
-            @error('title')
+            <label for="name" class="form-label">Nome del piatto</label>
+            <input type="text" class="form-control my-dish-name @error('name') is-invalid @enderror " id="name"
+                name="name">
+            @error('name')
                 <div class="invalid-feedback">
                     {{ $message }}
                 </div>
@@ -29,7 +30,8 @@
 
         <div class="mb-3">
             <label for="content" class="form-label">Prezzo</label>
-            <input type="text" class="form-control @error('price') is-invalid @enderror " id="price" name="price">
+            <input type="text" class="form-control my-dish-price @error('price') is-invalid @enderror " id="price"
+                name="price">
             @error('price')
                 <div class="invalid-feedback">
                     {{ $message }}
@@ -90,7 +92,7 @@
 
 
 
-        <button type="submit" class="btn btn-primary">Salva</button>
+        <button type="submit" class="btn btn-primary my-dish-submit">Salva</button>
 
     </form>
 
