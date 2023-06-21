@@ -17,6 +17,7 @@
                             name="name" value="{{ old('name') }}">
 
                     </div>
+                    <div class="d-none text-danger" id="requiredName">Nome Obbligatorio</div>
                     @error('name')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -30,8 +31,8 @@
                     <div class="d-flex gap-2">
                         <input type="text" class="form-control @error('address') is-invalid @enderror" id="address"
                             name="address" value="{{ old('address') }}">
-
                     </div>
+                    <div class="d-none text-danger" id="requiredAddress">Indirizzo Obbligatorio</div>
                     @error('address')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -45,8 +46,8 @@
                     <div class="d-flex gap-2">
                         <input type="text" class="form-control @error('vat_number') is-invalid @enderror" id="vat_number"
                             name="vat_number" value="{{ old('vat_number') }}">
-
                     </div>
+                    <div class="d-none text-danger" id="requiredVat">Partita IVA Obbligatoria</div>
                     @error('vat_number')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -59,8 +60,8 @@
                     <div class="d-flex gap-2">
                         <input type="text" class="form-control @error('phone') is-invalid @enderror" id="phone"
                             name="phone" value="{{ old('phone') }}">
-
                     </div>
+                    <div class="d-none text-danger" id="requiredPhone">Phone Number Obbligatorio</div>
                     @error('phone')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -97,7 +98,7 @@
             </div>
 
             <div class="col-12 ">
-
+                <div class="d-none text-danger" id="requiredCategory">Seleziona almeno 1 categoria</div>
                 <div class="mb-3">
                     <label class="form-label">Category</label>
                     <div class="d-flex gap-2">
@@ -107,7 +108,6 @@
                             <label for="categories{{ $category->id }}"
                                 class="form-check-label text-capitalize">{{ $category->name }}</label>
                         @endforeach
-
                     </div>
                     @error('categories')
                         <div class="invalid-feedback">{{ $message }}</div>
