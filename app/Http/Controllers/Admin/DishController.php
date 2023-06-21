@@ -96,8 +96,9 @@ class DishController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Dish $dish)
-    { {
-            if (Auth::user()->id == $dish->restaurant_id) {
+    {
+        {
+            if(Auth::user()->id == $dish->restaurant_id){
                 return view('admin.dishes.edit', compact('dish'));
             } else {
                 return view('admin.errors.404');
