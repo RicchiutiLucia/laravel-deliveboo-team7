@@ -1,14 +1,24 @@
 @extends('layouts.app')
 
-@section('content')
-
-
-
 
 @section('content')
     <section id="" class="container-fluid">
+
         <form action="{{ route('admin.dishes.update', ['dish' => $dish->slug]) }}" method="POST" enctype="multipart/form-data"
             class="my-dish-form">
+
+        @if ($errors->any())
+            <div class="alert alert-danger" role="alert">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+        <form action="{{ route('admin.dishes.update', ['dish' => $dish->slug]) }}" method="POST"
+            enctype="multipart/form-data">
+
             @csrf
             @method('PUT')
             <div class="d-flex">
@@ -58,7 +68,7 @@
 
                             <div class="pb-3">
                                 <label for="image" class="form-label">Immagine del piatto</label>
-                                <img class="img-thumbnail my-img-thumb" src="{{ $dish->image }}" alt="" />
+                                <img class="img-thumbnail my-img-thumb w-50" src="{{asset('storage/' . $dish->image)}}" alt="{{ $dish->name }}" />
                                 <input type="file" class="form-control @error('image') is-invalid @enderror "
                                     id="image" name="image">
                                 @error('image')

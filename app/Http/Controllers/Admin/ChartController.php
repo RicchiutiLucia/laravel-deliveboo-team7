@@ -14,30 +14,42 @@ use PharIo\Manifest\Author;
 
 class ChartController extends Controller
 {
-    public function index()
+  public function index()
 
-    {
-      $dishOrders = DB::select('SELECT dish_id, order_id, quantity FROM dish_order');
-      dd($dishOrders);
-      foreach ($dishOrders as $dishOrder) {
-        $dishId = $dishOrder->dish_id;
-        $orderId = $dishOrder->order_id;
-        $quantity = $dishOrder->quantity;
-        
-    }
-   
-  /*
-      //CHIAMATA MESI
-      $groups = Order::where('id', $dishOrder->order_id)
-        ->select(DB::raw('DATE_FORMAT(created_at, "%Y-%m") as month'), DB::raw('COUNT(id) as tot'))
+  {
+    $dishOrders = DB::table('dish_order')
+      ->join('dishes', 'dishes.id', '=', 'dish_order.dish_id')
+      ->select('dish_order.dish_id', 'dish_order.order_id', 'dish_order.quantity')
+      ->where('dishes.restaurant_id',  Auth::user()->id)->get();
+
+    $arr = [];
+    $dataOrders = [];
+
+    foreach ($dishOrders as $key => $order) {
+
+      $groups = Order::where('id', $order->order_id)
+        ->select(DB::raw('DATE_FORMAT(created_at, "%m-%Y") as month'), DB::raw('COUNT(id) as tot'))
         ->orderBy('month', "asc")
         ->groupBy('month')
         ->pluck('tot', 'month')->all();
-  
-      $chartMonth = new Chart;
-      $chartMonth->labels = (array_keys($groups));
-      $chartMonth->dataset = (array_values($groups));
-  
+
+      $data = DB::table('orders')->where('id', $order->order_id)->value('created_at');
+
+
+      $dataOrders[] = $data;
+
+      if (!in_array(key($groups), $arr)) {
+        $arr[] = [
+          'x' => key($groups),
+          'y' => count($dishOrders)
+        ];
+      }
+    }
+    //CHIAMATA MESI
+
+    $chartMonth =  new Chart;
+
+    /*
       //CHIAMATA ANNI
       $groups = Order::where("restaurant_id", $rest)
         ->select(DB::raw('DATE_FORMAT(created_at, "%Y") as year'), DB::raw('COUNT(id) as tot'))
@@ -72,8 +84,7 @@ class ChartController extends Controller
       $chartPriceYear->dataset = (array_values($groups));
   
   */
-  
-      return view('admin.charts.index', compact('chartMonth', 'chartYear', 'chartPriceMonth', 'chartPriceYear'));
-    }
-  }
 
+    return view('admin.charts.index', compact('arr'));
+  }
+}

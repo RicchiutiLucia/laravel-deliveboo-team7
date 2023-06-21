@@ -2,42 +2,77 @@
 
 @section('content')
   {{-- CHARTJS --}}
-  <div class="container chart_bgc border rounded pb-3">
-    <div class="row px-3 pt-3 mb-4">
-      <h2 class="col-12 mb-3">Numero di ordini</h2>
-      <div class="col-12 col-lg-6 my-2">
+
         <canvas id="userChart" class="rounded shadow"></canvas>
-        <div class="mt-4 text-center">
-          <label for="startDate">Da:</label>
-          <input onchange="filterData()" type="month" id="startDate">
-          <label class="ml-3" for="endDate">A:</label>
-          <input onchange="filterData()" type="month" id="endDate">
-        </div>
-      </div>
 
-      {{-- <div class="col-12 col-lg-6">
-        <canvas id="userChartyear" class="rounded shadow"></canvas>
-      </div> --}}
-    </div>
-
-    {{-- <div class="row px-3 pt-3">
-      <h2 class="col-12 mb-3">Ammontare delle vendite</h2>
-      <div class="col-12 col-lg-6 container mb-5">
-        <canvas id="ChartPriceMonth" class="rounded shadow"></canvas>
-      </div>
-
-      <div class="col-12 col-lg-6 container">
-        <canvas id="chartPriceYear" class="rounded shadow"></canvas>
-      </div>
-    </div> --}}
-  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
   <script async>
-    const dates = {!! json_encode($chartMonth->labels) !!};
-    const dataPoints = {!! json_encode($chartMonth->dataset) !!};
+    console.log({!! json_encode($arr) !!})
+    let arr = {!! json_encode($arr) !!}
 
-    let inpStartDate = document.getElementById('startDate').value = dates[0];
+let months = []
+
+let count = {}
+
+arr.forEach((el, i) => {
+  count[el.x] = (count[el.x] || 0) + 1
+
+});
+
+Object.keys(count).map((key, i) => {
+  
+})
+
+  console.log(Object.keys(count).sort());
+
+    var data = {
+      labels: Object.keys(count).sort(),
+      datasets: [{
+        label: "Ordini",
+        backgroundColor: "rgba(255,99,132,0.2)",
+        borderColor: "rgba(255,99,132,1)",
+        borderWidth: 2,
+        hoverBackgroundColor: "rgba(255,99,132,0.4)",
+        hoverBorderColor: "rgba(255,99,132,1)",
+        data: Object.values(count).sort(),
+      }]
+    };
+
+var options = {
+  maintainAspectRatio: false,
+  scales: {
+    y: {
+      stacked: true,
+      grid: {
+        display: true,
+        color: "rgba(255,99,132,0.2)"
+      }
+    },
+    x: {
+        stacked: true
+    },
+    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+  }
+
+};
+
+const myChart = new Chart("userChart", {
+      type: 'bar',
+      options: options,
+      data: data
+    });
+
+    
+
+
+    
+
+    /*let inpStartDate = document.getElementById('startDate').value = dates[0];
     // console.log(inpStartDate)
     let inpEndDate = document.getElementById('endDate').value = dates[dates.length - 1];
 
@@ -49,10 +84,10 @@
 
       // The data for our dataset
       data: {
-        labels: dates, // Pariole sotto la tabella
+        labels: arr[0].data, // Pariole sotto la tabella
         datasets: [{
           label: 'N°ordini / mese',
-          data: dataPoints,
+          data: arr[0].id[0],
 
           // Bisogna trovare un modo assegnare un colore per ogni elemento con un ciclo
           backgroundColor: [
@@ -104,203 +139,7 @@
 
     filterData();
 
-/*
-    // CHIAMATA ANNI
-    var ctj = document.getElementById('userChartyear').getContext('2d');
-    var chartb = new Chart(ctj, {
-      // The type of chart we want to create
-      type: 'line',
 
-      // The data for our dataset
-      data: {
-        labels: {!! json_encode($chartYear->labels) !!}, // Pariole sotto la tabella
-        datasets: [{
-          label: 'N°ordini / anno',
-          data: {!! json_encode($chartYear->dataset) !!},
-
-          // Bisogna trovare un modo assegnare un colore per ogni elemento con un ciclo
-          backgroundColor: [
-            'rgba(73, 242, 228, .4)',
-          ],
-          borderColor: [
-            'rgba(0, 106, 100, 1)',
-            'rgba(54, 162, 235, 1)',
-            'rgba(255, 206, 86, 1)',
-            'rgba(75, 192, 192, 1)',
-            'rgba(153, 102, 255, 1)',
-          ],
-          borderWidth: 2
-        }, ]
-      },
-      // Configuration options go here
-      options: {
-        scales: {
-          yAxes: [{
-            ticks: {
-              beginAtZero: true,
-              callback: function(value) {
-                if (value % 1 === 0) {
-                  return value;
-                }
-              }
-            },
-            scaleLabel: {
-              display: false
-            }
-          }]
-        },
-        legend: {
-          labels: {
-            // This more specific font property overrides the global property
-            fontColor: '#122C4B',
-            fontFamily: "'Muli', sans-serif",
-            padding: 25,
-            boxWidth: 25,
-            fontSize: 18,
-          }
-        },
-        layout: {
-          padding: {
-            left: 10,
-            right: 10,
-            top: 0,
-            bottom: 10
-          }
-        }
-      }
-    });
-
-    //CHIAMATA VENDITE MENSILI
-    var ctj = document.getElementById('ChartPriceMonth').getContext('2d');
-    var chartc = new Chart(ctj, {
-      // The type of chart we want to create
-      type: 'line',
-
-      // The data for our dataset
-      data: {
-        labels: {!! json_encode($chartPriceMonth->labels) !!}, // Pariole sotto la tabella
-        datasets: [{
-          label: 'Totale vendite mensili',
-          data: {!! json_encode($chartPriceMonth->dataset) !!},
-
-          // Bisogna trovare un modo assegnare un colore per ogni elemento con un ciclo
-          backgroundColor: [
-            'rgba(73, 242, 228, .4)',
-          ],
-          borderColor: [
-            'rgba(0, 106, 100, 1)',
-            'rgba(54, 162, 235, 1)',
-            'rgba(255, 206, 86, 1)',
-            'rgba(75, 192, 192, 1)',
-            'rgba(153, 102, 255, 1)',
-          ],
-          borderWidth: 2
-        }, ]
-      },
-      // Configuration options go here
-      options: {
-        scales: {
-          yAxes: [{
-            ticks: {
-              beginAtZero: true,
-              callback: function(value) {
-                if (value % 1 === 0) {
-                  return value;
-                }
-              }
-            },
-            scaleLabel: {
-              display: false
-            }
-          }]
-        },
-        legend: {
-          labels: {
-            // This more specific font property overrides the global property
-            fontColor: '#122C4B',
-            fontFamily: "'Muli', sans-serif",
-            padding: 25,
-            boxWidth: 25,
-            fontSize: 18,
-          }
-        },
-        layout: {
-          padding: {
-            left: 10,
-            right: 10,
-            top: 0,
-            bottom: 10
-          }
-        }
-      }
-    });
-
-    //CHIAMATA VENDITE ANNUALI
-    var ctj = document.getElementById('chartPriceYear').getContext('2d');
-    var chartd = new Chart(ctj, {
-      // The type of chart we want to create
-      type: 'line',
-
-      // The data for our dataset
-      data: {
-        labels: {!! json_encode($chartPriceYear->labels) !!}, // Pariole sotto la tabella
-        datasets: [{
-          label: 'Totale vendite annuali',
-          data: {!! json_encode($chartPriceYear->dataset) !!},
-
-          // Bisogna trovare un modo assegnare un colore per ogni elemento con un ciclo
-          backgroundColor: [
-            'rgba(73, 242, 228, .4)',
-          ],
-          borderColor: [
-            'rgba(0, 106, 100, 1)',
-            'rgba(54, 162, 235, 1)',
-            'rgba(255, 206, 86, 1)',
-            'rgba(75, 192, 192, 1)',
-            'rgba(153, 102, 255, 1)',
-          ],
-          borderWidth: 2
-        }, ]
-      },
-      // Configuration options go here
-      options: {
-        scales: {
-          yAxes: [{
-            ticks: {
-              beginAtZero: true,
-              callback: function(value) {
-                if (value % 1 === 0) {
-                  return value;
-                }
-              }
-            },
-            scaleLabel: {
-              display: false
-            }
-          }]
-        },
-        legend: {
-          labels: {
-            // This more specific font property overrides the global property
-            fontColor: '#122C4B',
-            fontFamily: "'Muli', sans-serif",
-            padding: 25,
-            boxWidth: 25,
-            fontSize: 18,
-          }
-        },
-        layout: {
-          padding: {
-            left: 10,
-            right: 10,
-            top: 0,
-            bottom: 10
-          }
-        }
-      }
-    });
-
-    */
 
 
     function filterData() {
@@ -396,6 +235,6 @@
     function setCharAt(str, index, chr) {
       if (index > str.length - 1) return str;
       return str.substring(0, index) + chr + str.substring(index + 1);
-    }
+    }*/
   </script>
 @endsection
