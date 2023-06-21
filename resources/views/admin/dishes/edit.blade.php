@@ -32,7 +32,7 @@
                                 <label for="name" class="form-label">Nome</label>
                                 <input type="text" class="form-control my-dish-name @error('name') is-invalid @enderror"
                                     id="name" name="name" value="{{ old('name', $dish->name) }}">
-                                <div class="d-none text-danger" id="requiredDishName">Nome Obbligatorio</div>
+                                <div class="d-none text-danger" id="requiredDishName">Nome Obbligatorio*</div>
                                 @error('name')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -44,7 +44,7 @@
                                 <input type="number"
                                     class="form-control my-dish-price @error('price') is-invalid @enderror" id="price"
                                     name="price" value="{{ old('price', $dish->price) }}" min='0' max='99.99' step='0.01'>
-                                    <div class="d-none text-danger" id="requiredDishPrice">Prezzo Obbligatorio</div>
+                                    <div class="d-none text-danger" id="requiredDishPrice">Prezzo Obbligatorio*</div>
                                 @error('price')
                                 <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror

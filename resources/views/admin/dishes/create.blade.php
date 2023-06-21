@@ -20,8 +20,8 @@
     <div class="mb-3">
         <label for="name" class="form-label">Nome del piatto</label>
         <input type="text" class="form-control my-dish-name @error('name') is-invalid @enderror " id="name"
-            name="name">
-        <div class="d-none text-danger" id="requiredDishName">Nome Obbligatorio</div>
+            name="name" value="{{ old('name') }}">
+        <div class="d-none text-danger" id="requiredDishName">Nome Obbligatorio*</div>
         @error('name')
             <div class="invalid-feedback">
                 {{ $message }}
@@ -32,8 +32,8 @@
     <div class="mb-3">
         <label for="price" class="form-label">Prezzo</label>
         <input type="number" class="form-control my-dish-price @error('price') is-invalid @enderror " id="price"
-            name="price" min='0' max='99.99' step='0.01'>
-        <div class="d-none text-danger" id="requiredDishPrice">Prezzo Obbligatorio</div>
+            name="price" min='0' max='99.99' step='0.01'  value="{{ old('price') }}">
+        <div class="d-none text-danger" id="requiredDishPrice">Prezzo Obbligatorio*</div>
         @error('price')
             <div class="invalid-feedback">
                 {{ $message }}
@@ -43,7 +43,7 @@
 
     <div class="mb-3">
         <label for="ingredients" class="form-label">Ingredienti del piatto</label>
-        <textarea class="form-control @error('ingredients') is-invalid @enderror" id="ingredients" name="ingredients"></textarea>
+        <textarea class="form-control @error('ingredients') is-invalid @enderror" id="ingredients" name="ingredients"> {{ old('ingredients') }}</textarea>
         @error('ingredients')
             <div class="invalid-feedback">
                 {{ $message }}
@@ -52,7 +52,7 @@
     </div>
     <div class="mb-3">
         <label for="description" class="form-label">Descrizione del piatto</label>
-        <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description"></textarea>
+        <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description">{{ old('description') }}</textarea>
         @error('description')
             <div class="invalid-feedback">
                 {{ $message }}
@@ -62,7 +62,7 @@
 
     <div class="mb-3">
         <label for="image" class="form-label">Immagine del piatto</label>
-        <input type="file" class="form-control @error('image') is-invalid @enderror " id="image" name="image">
+        <input type="file" class="form-control @error('image') is-invalid @enderror " id="image" name="image"  value="{{ old('image') }}">
         @error('image')
             <div class="invalid-feedback">
                 {{ $message }}
