@@ -36,7 +36,22 @@ class StoreDishRequest extends FormRequest
 
         ];
 
+    }
+    public function messages()
+    {
+        return[
 
+            'name.required' => 'Nome richiesto',
+            'name.max' => 'Lunghezza massima del nome è di 200 caratteri',
+            'price.required' => 'Prezzo richiesto',
+            'price.decimal' => 'Il prezzo deve essere un numero',
+            'description.max' => 'Lunghezza massima descrizione è di 2000 caratteri',
+            'ingredients.max' => 'Lunghezza massima descrizione è di 2000 caratteri',
+            'image.image' => 'L\'URL inserito non è valido',
+            'image.max' => 'Lunghezza massima dell\'url è di 1024 caratteri',
+            'visible.required' => 'La visibilità del piatto è richiesta'
+    
 
+        ];
     }
 }

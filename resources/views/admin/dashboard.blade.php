@@ -12,7 +12,7 @@
                         <p class="card-text">
                             {{-- box alert registrazione effettuata con successo --}}
                         <div class="alert alert-success" role="alert">
-                            Congratulazioni {{ Auth::user()->name }}, il login ha avuto successo.
+                            Salve {{ Auth::user()->name }}, il login è avvenuto con successo.
                         </div>
                         </p>
                         
