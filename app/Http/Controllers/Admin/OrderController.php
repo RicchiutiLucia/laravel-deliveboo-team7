@@ -6,7 +6,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
@@ -17,7 +18,13 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::all();
+
+        $orders = DB::table('dish_order')
+            ->join('dishes', 'dishes.id', '=', 'dish_order.dish_id')
+            ->join('orders', 'orders.id', '=', 'dish_order.order_id')
+            ->select('orders.name', 'orders.total_price', 'orders.email', 'orders.address', 'orders.phone', 'orders.created_at')
+            ->where('dishes.restaurant_id',  Auth::user()->id)->get();
+
         return view('admin.orders.index', compact('orders'));
     }
 
