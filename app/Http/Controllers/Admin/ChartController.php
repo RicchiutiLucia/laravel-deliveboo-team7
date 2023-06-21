@@ -22,7 +22,10 @@ class ChartController extends Controller
       ->select('dish_order.dish_id', 'dish_order.order_id', 'dish_order.quantity')
       ->where('dishes.restaurant_id',  Auth::user()->id)->get();
 
+
+
     $arr = [];
+    $tot = 0;
 
     foreach ($dishOrders as $key => $order) {
 
@@ -32,16 +35,14 @@ class ChartController extends Controller
         ->groupBy('month')
         ->pluck('tot', 'month')->all();
 
-      $data = DB::table('orders')->where('id', $order->order_id)->value('created_at');
-
+      $total = DB::table('orders')->where('id', $order->order_id)->value('total_price');
+      $tot += $total;
       $arr[] = [
         'x' => key($groups),
         'y' => count($dishOrders)
       ];
     }
-    //CHIAMATA MESI
 
-    $chartMonth =  new Chart;
 
     /*
       //CHIAMATA ANNI
@@ -79,6 +80,6 @@ class ChartController extends Controller
   
   */
 
-    return view('admin.charts.index', compact('arr'));
+    return view('admin.charts.index', compact('arr', 'tot'));
   }
 }

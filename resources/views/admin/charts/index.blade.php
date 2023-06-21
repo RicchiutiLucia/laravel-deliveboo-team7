@@ -4,13 +4,13 @@
   {{-- CHARTJS --}}
 
         <canvas id="userChart" class="rounded shadow"></canvas>
-
+  <h1>guadgno total: {{$tot}}</h1>
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
   <script async>
     console.log({!! json_encode($arr) !!})
     let arr = {!! json_encode($arr) !!}
-
+    let totalPrice = {!! json_encode($tot) !!}
 let count = {}
 
 arr.forEach((el, i) => {
