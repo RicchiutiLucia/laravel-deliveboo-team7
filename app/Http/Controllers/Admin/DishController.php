@@ -100,7 +100,7 @@ class DishController extends Controller
     {
         {
             if(Auth::user()->id == $dish->restaurant_id){
-                return view('admin.dishes.show', compact('dish'));
+                return view('admin.dishes.edit', compact('dish'));
             } else {
                // return view();
             }
