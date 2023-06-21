@@ -68,9 +68,15 @@
 
                             <div class="pb-3">
                                 <label for="image" class="form-label">Immagine del piatto</label>
-                                <img class="img-thumbnail my-img-thumb w-50" src="{{asset('storage/' . $dish->image)}}" alt="{{ $dish->name }}" />
+                                @if ($dish->image)
+                                    <div class="my-img-wrapper">
+                                        <img class="img-thumbnail my-img-thumb" src="{{asset('storage/' . $dish->image)}}" alt="{{$dish->name}}"/>
+                                    <a class="my-img-delete btn btn-danger" id="btn-delete">X</a>
+                                    </div>
+                                @endif
                                 <input type="file" class="form-control @error('image') is-invalid @enderror "
                                     id="image" name="image">
+                                    
                                 @error('image')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -101,6 +107,11 @@
                     </div>
                 </div>
             </div>
+        </form>
+
+        <form id="form-delete" action="{{route('admin.dishes.deleteImage', ['slug' => $dish->slug])}}" method="POST">
+            @csrf
+            @method('DELETE')
         </form>
     </section>
 

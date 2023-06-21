@@ -146,4 +146,10 @@ deleteButtons.forEach(button => {
 
 
 
+        const btnDelete = document.getElementById('btn-delete');
 
+        btnDelete.addEventListener('click', function () {
+            console.log('ciaooooooo');
+            const formDelete = document.getElementById('form-delete');
+            formDelete.submit();
+        });

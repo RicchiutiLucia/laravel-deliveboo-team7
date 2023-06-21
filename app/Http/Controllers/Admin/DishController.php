@@ -68,7 +68,7 @@ class DishController extends Controller
 
         $newDish = Dish::create($validated_data);
 
-       // $validated_data['slug'] = $validated_data['slug']  . '-' . $newDish['id'];
+        // $validated_data['slug'] = $validated_data['slug']  . '-' . $newDish['id'];
         $newDish->update($validated_data);
 
         return redirect()->route('admin.dishes.show', ['dish' => $newDish->slug])->with('status', 'Nuovo Piatto creato!');
@@ -82,12 +82,11 @@ class DishController extends Controller
      */
     public function show(Dish $dish)
     {
-        if(Auth::user()->id == $dish->restaurant_id){
+        if (Auth::user()->id == $dish->restaurant_id) {
             return view('admin.dishes.show', compact('dish'));
         } else {
-           // return view();
+            // return view();
         }
-        
     }
 
     /**
@@ -97,14 +96,12 @@ class DishController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Dish $dish)
-    {
-        {
-            if(Auth::user()->id == $dish->restaurant_id){
-                return view('admin.dishes.show', compact('dish'));
+    { {
+            if (Auth::user()->id == $dish->restaurant_id) {
+                return view('admin.dishes.edit', compact('dish'));
             } else {
-               // return view();
+                return view('admin.errors.404');
             }
-            
         }
     }
 
@@ -152,7 +149,25 @@ class DishController extends Controller
      */
     public function destroy(Dish $dish)
     {
+
+        if ($dish->image) {
+            Storage::delete($dish->image);
+        }
         $dish->delete();
         return redirect()->route('admin.dishes.index');
+    }
+
+    public function deleteImage($slug)
+    {
+
+        $dish = Dish::where('slug', $slug)->firstOrFail();
+
+        if ($dish->image) {
+            Storage::delete($dish->image);
+            $dish->image = null;
+            $dish->save();
+        }
+
+        return redirect()->route('admin.dishes.edit', $dish->slug);
     }
 }

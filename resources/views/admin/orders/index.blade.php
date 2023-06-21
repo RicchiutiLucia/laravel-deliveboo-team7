@@ -10,7 +10,6 @@
                 <th scope="col">Email</th>
                 <th scope="col">Cell.</th>
                 <th scope="col">Data</th>
-                <th scope="col">Azioni</th>
             </tr>
         </thead>
         <tbody>

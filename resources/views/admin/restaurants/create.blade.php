@@ -14,7 +14,7 @@
                     <label for="name" class="form-label">Name</label>
                     <div class="d-flex gap-2">
                         <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"
-                            name="name">
+                            name="name" value="{{ old('name') }}">
 
                     </div>
                     @error('name')
@@ -29,7 +29,7 @@
                     <label for="address" class="form-label">Address</label>
                     <div class="d-flex gap-2">
                         <input type="text" class="form-control @error('address') is-invalid @enderror" id="address"
-                            name="address">
+                            name="address" value="{{ old('address') }}">
 
                     </div>
                     @error('address')
@@ -44,7 +44,7 @@
                     <label for="vat_number" class="form-label">Vat Number</label>
                     <div class="d-flex gap-2">
                         <input type="text" class="form-control @error('vat_number') is-invalid @enderror" id="vat_number"
-                            name="vat_number">
+                            name="vat_number" value="{{ old('vat_number') }}">
 
                     </div>
                     @error('vat_number')
@@ -58,7 +58,7 @@
                     <label for="phone" class="form-label">Phone Number</label>
                     <div class="d-flex gap-2">
                         <input type="text" class="form-control @error('phone') is-invalid @enderror" id="phone"
-                            name="phone">
+                            name="phone" value="{{ old('phone') }}">
 
                     </div>
                     @error('phone')
@@ -72,7 +72,7 @@
                     <label for="description" class="form-label">Description</label>
                     <div class="d-flex gap-2">
                         <input type="text" class="form-control @error('description') is-invalid @enderror"
-                            id="description" name="description">
+                            id="description" name="description" value="{{ old('description') }}">
 
                     </div>
                     @error('description')
@@ -89,7 +89,7 @@
                 </div>
                 <div class="w-50 align-self-end">
                     <input type="file" name="image" id="input_file_img"
-                        class="form-control mt-3 @error('image') is-invalid @enderror">
+                        class="form-control mt-3 @error('image') is-invalid @enderror" value="{{ old('image') }}">
                     @error('image')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror

@@ -44,10 +44,11 @@ Route::middleware(['auth', 'verified'])
             'dishes' => 'dish:slug'
         ]);
 
+        Route::delete('dishes/{slug}/deleteImage', [DishController::class, 'deleteImage'])->name('dishes.deleteImage');
+
         Route::resource('restaurants', RestaurantController::class)->parameters(['restaurants' => 'restaurant:slug']);
         Route::resource('orders', OrderController::class);
         Route::resource('charts', ChartController::class);
-       
     });
 
 
