@@ -2,6 +2,51 @@
 
 @section('content')
 
+
+
+    @if ($errors->any())
+        <div class="alert alert-danger" role="alert">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
+    <form method="POST" action="{{ route('admin.dishes.store') }}" enctype="multipart/form-data" class="my-dish-form">
+
+        @csrf
+
+        <div class="mb-3">
+            <label for="name" class="form-label">Nome del piatto</label>
+            <input type="text" class="form-control my-dish-name @error('name') is-invalid @enderror " id="name"
+                name="name">
+            @error('name')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+            @enderror
+        </div>
+
+        <div class="mb-3">
+            <label for="content" class="form-label">Prezzo</label>
+            <input type="text" class="form-control my-dish-price @error('price') is-invalid @enderror " id="price"
+                name="price">
+            @error('price')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+            @enderror
+        </div>
+
+        <div class="mb-3">
+            <label for="ingredients" class="form-label">Ingredienti del piatto</label>
+            <textarea class="form-control @error('ingredients') is-invalid @enderror" id="ingredients" name="ingredients"></textarea>
+            @error('ingredients')
+                <div class="invalid-feedback">
+                    {{ $message }}
+
 <div class="container-fluid py-5">
                 @if ($errors->any())
                 <div class="alert alert-danger" role="alert">
@@ -10,6 +55,7 @@
                             <li>{{ $error }}</li>
                         @endforeach
                     </ul>
+
                 </div>
             @endif
 
@@ -86,7 +132,11 @@
 
             </form>
 
+
+        <button type="submit" class="btn btn-primary my-dish-submit">Salva</button>
+
             @endsection
+
 
 
 </div>
