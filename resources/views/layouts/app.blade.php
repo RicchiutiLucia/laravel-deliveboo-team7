@@ -26,13 +26,9 @@
 
         <main class="container">
             <div class="container-fluid">
-                <div class='row'>
-                    
-                    <div class="col-12">
 
-                        @yield('content')
-                    </div>
-                </div>
+                @yield('content')
+              
             </div>
         </main>
     </div>
