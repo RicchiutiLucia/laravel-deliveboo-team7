@@ -17,7 +17,8 @@
                             name="name" value="{{ old('name') }}">
 
                     </div>
-                    <div class="d-none text-danger" id="requiredName">Nome Obbligatorio</div>
+                    <div class="d-none text-danger" id="requiredName">Nome Obbligatorio*</div>
+                    <div class="d-none text-danger" id="nameTooLong">Il nome deve essere masismo di 200 caratteri*</div>
                     @error('name')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -32,7 +33,8 @@
                         <input type="text" class="form-control @error('address') is-invalid @enderror" id="address"
                             name="address" value="{{ old('address') }}">
                     </div>
-                    <div class="d-none text-danger" id="requiredAddress">Indirizzo Obbligatorio</div>
+                    <div class="d-none text-danger" id="requiredAddress">Indirizzo Obbligatorio*</div>
+                    <div class="d-none text-danger" id="addressTooLong">L'indirizzo deve essere masismo di 100 caratteri*</div>
                     @error('address')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -47,7 +49,8 @@
                         <input type="text" class="form-control @error('vat_number') is-invalid @enderror" id="vat_number"
                             name="vat_number" value="{{ old('vat_number') }}">
                     </div>
-                    <div class="d-none text-danger" id="requiredVat">Partita IVA Obbligatoria</div>
+                    <div class="d-none text-danger" id="requiredVat">Partita IVA Obbligatoria*</div>
+                    <div class="d-none text-danger" id="vatMustbe">La Partita IVA deve essere di 11 numeri*</div>
                     @error('vat_number')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -61,7 +64,8 @@
                         <input type="text" class="form-control @error('phone') is-invalid @enderror" id="phone"
                             name="phone" value="{{ old('phone') }}">
                     </div>
-                    <div class="d-none text-danger" id="requiredPhone">Phone Number Obbligatorio</div>
+                    <div class="d-none text-danger" id="requiredPhone">Numero di telefono Obbligatorio*</div>
+                    <div class="d-none text-danger" id="phoneMustBe">Il numero di telefono deve essere di almeno 10 cifre e massimo 15 cifre</div>
                     @error('phone')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -103,7 +107,7 @@
                     <div class="d-flex flex-column flex-md-row gap-2">
                         @foreach ($categories as $category)
                             <input type="checkbox" class="my-category  @error('categories') is-invalid @enderror"
-                                id="categories{{ $category->id }}" name="categories[]" value="{{ $category->id }}">
+                                id="categories{{ $category->id }}" name="categories[]" value="{{ $category->id }}" @if (in_array($category->id , old('categories', []))) checked @endif>
                             <label for="categories{{ $category->id }}"
                                 class="form-check-label text-capitalize">{{ $category->name }}</label>
                         @endforeach

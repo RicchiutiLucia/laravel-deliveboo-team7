@@ -46,10 +46,21 @@ function validateFormRestaurant() {
         displayError('requiredName');
 
     }
+    if (name.length > 200) {
+
+        status = false
+        displayError('nameTooLong');
+
+    }
     if (address === '') {
 
         status = false
         displayError('requiredAddress');
+    }
+    if (address > 100) {
+
+        status = false
+        displayError('addressTooLong');
     }
     if (vat_number === '') {
 
@@ -57,12 +68,22 @@ function validateFormRestaurant() {
         displayError('requiredVat');
 
     }
+    if (vat_number.length > 0 && (vat_number.length != 11 || isNaN(vat_number))) {
 
+        status = false
+        displayError('vatMustbe');
 
+    }
     if (phone === '') {
 
         status = false
         displayError('requiredPhone');
+
+    }
+    if (phone.length > 0 && (phone.length > 15 || phone.length < 10)) {
+
+        status = false
+        displayError('phoneMustBe');
 
     }
     if (category.length == 0) {

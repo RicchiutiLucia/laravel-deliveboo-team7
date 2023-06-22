@@ -85,7 +85,7 @@ class DishController extends Controller
         if (Auth::user()->id == $dish->restaurant_id) {
             return view('admin.dishes.show', compact('dish'));
         } else {
-            // return view();
+            return view('admin.errors.404');
         }
     }
 
