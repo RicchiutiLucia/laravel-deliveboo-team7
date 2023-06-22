@@ -19,13 +19,11 @@
 
         <main class="container">
             <div class="container-fluid">
-                <div class='row'>
+                
 
-                    <div class="col-10">
-
-                        @yield('content')
-                    </div>
-                </div>
+                 @yield('content')
+                    
+                
             </div>
         </main>
     </body>
