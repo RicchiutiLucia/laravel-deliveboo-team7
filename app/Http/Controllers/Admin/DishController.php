@@ -96,9 +96,8 @@ class DishController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Dish $dish)
-    {
-        {
-            if(Auth::user()->id == $dish->restaurant_id){
+    { {
+            if (Auth::user()->id == $dish->restaurant_id) {
                 return view('admin.dishes.edit', compact('dish'));
             } else {
                 return view('admin.errors.404');
@@ -119,10 +118,7 @@ class DishController extends Controller
         $validated_data = $request->validated();
         $validated_data['slug'] = Dish::generateSlug($request->name);
 
-        $checkDish = Dish::where('slug', $validated_data['slug'])->where('id', '<>', $dish->id)->first();
-        if ($checkDish) {
-            return back()->withInput()->withErrors(['slug' => 'Nome del piatto giá in uso']);
-        }
+
 
         if ($request->hasFile('image')) {
             if ($dish->image) {
