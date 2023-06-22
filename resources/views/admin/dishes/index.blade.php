@@ -13,7 +13,7 @@
                         @if ($dish->image)
                             <img src="{{asset('storage/' . $dish->image)}}" class="card-img-top h-100 w-100" alt="{{ $dish->name }}">
                         @else
-                            Ciccio bello
+                            <img src="https://www.tmedical.net/wp-content/uploads/2020/04/IMMAGINE-NON-DISPONIBILE.gif" class="card-img-top h-100 w-100" alt="{{ $dish->name }}">
                         @endif
                     </div>
                     <div class="card-body d-flex flex-wrap">
@@ -68,7 +68,7 @@
                 Confermi di voler eliminare l'elemento selezionato?
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
                 <button type="button" class="btn btn-danger">Conferma eliminazione</button>
             </div>
         </div>

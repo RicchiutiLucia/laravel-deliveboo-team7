@@ -6,7 +6,7 @@
         <thead>
             <tr>
                 <th scope="col">Nome<span class="d-none d-lg-inline"> cliente</span></th>
-                <th scope="col">Address</th>
+                <th scope="col">Indirizzo</th>
                 <th scope="col" class="d-none d-md-table-cell">Email</th>
                 <th scope="col" class="d-none d-md-table-cell">Cell.</th>
                 <th scope="col">Data</th>

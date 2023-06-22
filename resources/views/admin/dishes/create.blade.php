@@ -34,6 +34,7 @@
         <input type="number" class="form-control my-dish-price @error('price') is-invalid @enderror " id="price"
             name="price" min='0' max='99.99' step='0.01'  value="{{ old('price') }}">
         <div class="d-none text-danger" id="requiredDishPrice">Prezzo Obbligatorio*</div>
+        <div class="d-none text-danger" id="DishPricePositive">Il prezzo non può essere negativo*</div>
         @error('price')
             <div class="invalid-feedback">
                 {{ $message }}

@@ -153,6 +153,12 @@ function validateFormDish() {
         displayError('requiredDishPrice');
 
     }
+    if (price < 0) {
+
+        status = false
+        displayError('DishPricePositive');
+
+    }
 
     return status
 }
@@ -197,3 +203,78 @@ function displayError(error) {
 
 }
 
+// validazione front user
+
+
+
+function validateFormUser() {
+    let status = true;
+    const password = document.getElementById('password').value;
+    const confirmPassword = document.getElementById('password-confirm').value;
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+
+    if (password != confirmPassword) {
+        status = false;
+        displayError('passwordDoesntMatch');
+    }
+    if (password === '') {
+        status = false;
+        displayError('passwordRequired');
+    }
+    if (password.length > 0 && password.length < 8) {
+        status = false;
+        displayError('passwordTooShort');
+    }
+
+    if (name === '') {
+        status = false;
+        displayError('nameRequired');
+    }
+    if (email === '') {
+        status = false;
+        displayError('emailRequired');
+    }
+    if (email.length > 0 && validateEmail(email)) {
+        status = false;
+        displayError('validEmail');
+    }
+
+    return status
+
+
+}
+
+if (document.querySelector('.my-user-submit')) {
+
+    const submitButtonUser = document.querySelector('.my-user-submit');
+    submitButtonUser.addEventListener('click', function (event) {
+        event.preventDefault();
+
+        const errors = document.querySelectorAll('.text-danger');
+        errors.forEach(error => { error.classList.add('d-none') })
+
+
+
+        if (validateFormUser()) {
+            const form = document.querySelector('.my-user-form')
+            form.submit();
+
+        };
+
+    });
+
+};
+
+//funzione di validazione email
+
+function validateEmail(inputText) {
+
+    const mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    if (inputText.match(mailformat)) {
+
+        return false;
+    }
+
+    return true
+}

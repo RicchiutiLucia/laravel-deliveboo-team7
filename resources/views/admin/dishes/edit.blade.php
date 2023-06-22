@@ -47,6 +47,7 @@
                                     class="form-control my-dish-price @error('price') is-invalid @enderror" id="price"
                                     name="price" value="{{ old('price', $dish->price) }}" min='0' max='99.99' step='0.01'>
                                     <div class="d-none text-danger" id="requiredDishPrice">Prezzo Obbligatorio*</div>
+                                    <div class="d-none text-danger" id="DishPricePositive">Il prezzo non può essere negativo*</div>
                                 @error('price')
                                 <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
