@@ -118,7 +118,10 @@ class DishController extends Controller
         $validated_data = $request->validated();
         $validated_data['slug'] = Dish::generateSlug($request->name);
 
-
+        //$checkDish = Dish::where('slug', $validated_data['slug'])->where('id', '<>', $dish->id)->first();
+        //if ($checkDish) {
+        //    return back()->withInput()->withErrors(['slug' => 'Nome del piatto giá in uso']);
+        //}
 
         if ($request->hasFile('image')) {
             if ($dish->image) {
