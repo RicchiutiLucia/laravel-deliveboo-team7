@@ -18,4 +18,13 @@ class DishController extends Controller
 
         ]);
     }
+
+    public function getDish($id)
+    {
+        $dish = DB::table('dishes')->where('id', $id);
+        return response()->json([
+            'success' => true,
+            'result' => $dish
+        ]);
+    }
 }

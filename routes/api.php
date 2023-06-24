@@ -21,7 +21,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/categories',[CategoryController::class, 'index']);
+Route::get('/categories', [CategoryController::class, 'index']);
 
 Route::get('/categories/{slug}', [RestaurantController::class, 'index']);
 Route::get('/dishes/{id}', [DishController::class, 'index']);
+Route::get('/dish/{id}', [DishController::class, 'getDish']);
