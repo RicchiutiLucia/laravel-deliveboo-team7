@@ -21,7 +21,7 @@ class DishController extends Controller
 
     public function getDish($id)
     {
-        $dish = DB::table('dishes')->where('id', $id);
+        $dish = DB::table('dishes')->where('id', $id)->get();
         return response()->json([
             'success' => true,
             'result' => $dish
