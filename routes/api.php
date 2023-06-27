@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\Api\BraintreeController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\DishController;
+use App\Http\Controllers\Api\PaymentController;
 use App\Http\Controllers\Api\RestaurantController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -26,3 +28,8 @@ Route::get('/categories', [CategoryController::class, 'index']);
 Route::get('/categories/{slug}', [RestaurantController::class, 'index']);
 Route::get('/dishes/{id}', [DishController::class, 'index']);
 Route::get('/dish/{id}', [DishController::class, 'getDish']);
+
+//Braintree 
+
+Route::get('/braintree/client-token', [BraintreeController::class, 'generateClientToken']);
+Route::post('/payment/process', [PaymentController::class, 'processPayment']);
