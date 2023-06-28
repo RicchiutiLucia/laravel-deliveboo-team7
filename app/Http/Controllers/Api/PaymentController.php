@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Braintree\Gateway;
+use Illuminate\Support\Facades\DB;
 
 class PaymentController extends Controller
 {
@@ -36,7 +37,7 @@ class PaymentController extends Controller
             $transactionId = $result->transaction->id;
 
             // Additional logic, such as updating the order status or sending a confirmation email
-            return response()->json(['success' => true, 'transactionId' => $transactionId, 'items', $items]);
+            return response()->json(['success' => true, 'transactionId' => $transactionId, 'items' => $items]);
         } else {
             // Transaction failed
             $errorMessages = $result->message;
