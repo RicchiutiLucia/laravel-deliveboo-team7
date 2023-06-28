@@ -2,6 +2,12 @@
 
 namespace App\Mail;
 
+use App\DishOrder;
+use App\Models\Dish;
+use App\Models\Restaurant;
+use App\Models\User;
+
+
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -13,65 +19,27 @@ class NewOrder extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $lead;
+    public $order;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($_lead)
+    public function __construct($order)
     {
-        $this->lead = $_lead;
+        $this->order = $order;
     }
 
     public function build()
     {
-
-            // return $this->view('view.name');
-            return $this->view('emails.orderRestaurantMail')->with([
-                'name' => $this->lead['name'],
-                'email' => $this->lead['email'],
-                'address' => $this->lead['address'],
-                'phone' => $this->lead['phone'],
-                'total_price' => $this->lead['total_price'],
-                'order' => $this->lead['order']
-            ]);
+        return $this->subject('New Order Created')
+        ->view('emails.orderRestaurantMail')
+        ->with('order', $this->order);
+    }
         
     }
 
-    /**
-     * Get the message envelope.
-     *
-     * @return \Illuminate\Mail\Mailables\Envelope
-     */
-    public function envelope()
-    {
-        return new Envelope(
-            subject: 'Nuovo ordine dal sito',
-            replyTo: $this->lead->email
-        );
-    }
+    
+    
 
-    /**
-     * Get the message content definition.
-     *
-     * @return \Illuminate\Mail\Mailables\Content
-     */
-    public function content()
-    {
-        return new Content(
-            view: 'emails.orderRestaurantMail',
-        );
-    }
-
-    /**
-     * Get the attachments for the message.
-     *
-     * @return array
-     */
-    public function attachments()
-    {
-        return [];
-    }
-}
