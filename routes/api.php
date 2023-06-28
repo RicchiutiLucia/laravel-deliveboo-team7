@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\DishController;
 use App\Http\Controllers\Api\PaymentController;
 use App\Http\Controllers\Api\RestaurantController;
 use App\Http\Controllers\Api\OrderController;
+use App\Http\Controllers\Api\LeadController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -36,3 +37,5 @@ Route::get('/braintree/client-token', [BraintreeController::class, 'generateClie
 Route::post('/payment/process', [PaymentController::class, 'processPayment']);
 
 Route::post('/save-order', [OrderController::class, 'saveOrder']);
+
+Route::post('/contacts', [LeadController::class, 'store']);
