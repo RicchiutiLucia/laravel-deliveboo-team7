@@ -6,23 +6,26 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\NewOrder;
+use App\Mail\NewOrderCustomer;
 use App\Models\Lead;
 use Illuminate\Support\Facades\Validator;
 
 class LeadController extends Controller
 {
-    public function store(Request $request){
+    public function store(Request $request)
+    {
 
         $data = $request->all();
 
-        $validator = Validator::make($data,
-        [
-            'name' => 'required',
-            'email' => 'required|email',
-            'phone' => 'required',
-            'address' => 'required',
-           
-        ]
+        $validator = Validator::make(
+            $data,
+            [
+                'name' => 'required',
+                'email' => 'required|email',
+                'phone' => 'required',
+                'address' => 'required',
+
+            ]
         );
 
         if ($validator->fails()) {
@@ -35,21 +38,17 @@ class LeadController extends Controller
         }
 
         $newLead = new Lead();
-        $newLead ->fill($data);
-        $newLead ->save();
+        $newLead->fill($data);
+        $newLead->save();
 
-        $newOrder = new NewOrder($newLead );
-        Mail::to('deliveboogruppo7@gmail.com')->send($newOrder);
+        Mail::to('deliveboogruppo7@gmail.com')->send(new NewOrder($newLead));
 
-        Mail::to($newLead->email)->send($newOrder);
+        Mail::to($newLead->email)->send(new NewOrderCustomer($newLead));
 
         return response()->json(
             [
                 'success' => true
             ]
         );
-
-
-
     }
 }

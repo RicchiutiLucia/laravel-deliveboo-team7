@@ -11,7 +11,7 @@
     <h1>New Order Created</h1>
     <p>Order ID: {{ $order->id }}</p>
     <p>Name: {{ $order->name }}</p>
-    <p> Email: {{ $order->email }}</p>
+    <p> Email: {{ $order->email}}</p>
     <p>Phone: {{ $order->phone }}</p>
     <p>Address: {{ $order->address }}</p>
     <p>Total price: {{ $order->total_price }}</p>

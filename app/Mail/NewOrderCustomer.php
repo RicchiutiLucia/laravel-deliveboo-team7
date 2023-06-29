@@ -23,19 +23,21 @@ class NewOrderCustomer extends Mailable
      */
     public function __construct($_userData)
     {
-         $this->userData = $_userData;
+        $this->userData = $_userData;
     }
 
-   public function build(){
-         return $this->view('emails.orderGuestMail')->with(
-            [
+    public function build()
+    {
+        //dd($this->userData);
+        return $this->view('emails.orderGuestMail')->with(
+            'order',
+            $this->userData
+            /* [
                 'name' => $this->userData['name'],
                 'email' => $this->userData['email'],
                 'phone' => $this->userData['phone'],
                 'address' => $this->userData['address'],
-
-
-            ]
+            ] */
         );
-   }
+    }
 }
