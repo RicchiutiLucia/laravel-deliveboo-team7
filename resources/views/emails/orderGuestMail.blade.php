@@ -10,11 +10,11 @@
 
     <h1>New Order Created</h1>
     <p>Order ID: {{ $order->id }}</p>
-    <p>Customer Name: {{ $order->name }}</p>
-    <p>Customer Email: {{ $order->email }}</p>
-    <p>Customer Phone: {{ $order->phone }}</p>
-    <p>Customer Address: {{ $order->address }}</p>
-    <p>Customer Total price: {{ $order->total_price }}</p>
+    <p>Name: {{ $order->name }}</p>
+    <p> Email: {{ $order->email }}</p>
+    <p>Phone: {{ $order->phone }}</p>
+    <p>Address: {{ $order->address }}</p>
+    <p>Total price: {{ $order->total_price }}</p>
     
 </body>
 </html>

@@ -19,7 +19,9 @@ class LeadController extends Controller
         [
             'name' => 'required',
             'email' => 'required|email',
-            'message' => 'required'
+            'phone' => 'required',
+            'address' => 'required',
+           
         ]
         );
 
@@ -32,12 +34,14 @@ class LeadController extends Controller
             );
         }
 
-        $pippo = new Lead();
-        $pippo->fill($data);
-        $pippo->save();
+        $newLead = new Lead();
+        $newLead ->fill($data);
+        $newLead ->save();
 
-        $newOrder = new NewOrder($pippo);
+        $newOrder = new NewOrder($newLead );
         Mail::to('deliveboogruppo7@gmail.com')->send($newOrder);
+
+        Mail::to($newLead->email)->send($newOrder);
 
         return response()->json(
             [

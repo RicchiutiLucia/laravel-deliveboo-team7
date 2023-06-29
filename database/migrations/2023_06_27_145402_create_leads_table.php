@@ -17,7 +17,9 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email');
-            $table->string('message');
+            $table->string('address');
+            $table->string('phone');
+            $table->string('total_price');
            
             $table->timestamps();
         });
