@@ -10,6 +10,7 @@
                 <th scope="col" class="d-none d-md-table-cell">Email</th>
                 <th scope="col" class="d-none d-md-table-cell">Cell.</th>
                 <th scope="col">Data</th>
+                <th scope="col">Azioni</th>
             </tr>
         </thead>
         <tbody>
@@ -21,7 +22,8 @@
                     <td class="d-none d-md-table-cell">{{ $order->email }}</td>
                     <td class="d-none d-md-table-cell">{{ $order->phone }}</td>
                     <td>{{ $order->created_at }}</td>
-
+                    <td><a href="{{ route('admin.orders.show', ['order' => $order->id]) }}"
+                            class="btn btn-primary">Dettagli</a></td>
                 </tr>
             @endforeach
         </tbody>
