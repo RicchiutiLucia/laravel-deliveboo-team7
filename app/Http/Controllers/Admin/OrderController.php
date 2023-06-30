@@ -22,6 +22,7 @@ class OrderController extends Controller
         $orders = DB::table('dish_order')
             ->join('dishes', 'dishes.id', '=', 'dish_order.dish_id')
             ->join('orders', 'orders.id', '=', 'dish_order.order_id')
+            ->select('orders.name', 'orders.total_price', 'orders.email', 'orders.address', 'orders.phone', 'orders.created_at','orders.id')
             ->select('orders.name', 'orders.total_price', 'orders.email', 'orders.address', 'orders.phone', 'orders.created_at')
             ->orderBy('orders.created_at','desc')
             ->where('dishes.restaurant_id',  Auth::user()->id)->get();
@@ -60,8 +61,17 @@ class OrderController extends Controller
      */
     public function show($id)
     {
+        $orders_name = DB::table('dish_order')
+        ->join('dishes', 'dishes.id', '=', 'dish_order.dish_id')
+        ->join('orders', 'orders.id', '=', 'dish_order.order_id')
+        ->select('dishes.name','dish_order.quantity')
+        ->where('orders.id',  $id)->get();
+
+
+
+
         $orders = Order::findOrFail($id);
-        return view('admin.orders.show', compact('orders'));
+        return view('admin.orders.show', compact('orders','orders_name'));
     }
 
     /**
