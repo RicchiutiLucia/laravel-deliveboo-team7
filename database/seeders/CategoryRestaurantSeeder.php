@@ -45,7 +45,15 @@ class CategoryRestaurantSeeder extends Seeder
                 'restaurant_id' => 7
             ],
             [
+                'category_id' => 2,
+                'restaurant_id' => 8
+            ],
+            [
                 'category_id' => 6,
+                'restaurant_id' => 8
+            ],
+            [
+                'category_id' => 8,
                 'restaurant_id' => 8
             ],
             [
@@ -64,6 +72,61 @@ class CategoryRestaurantSeeder extends Seeder
                 'category_id' => 6,
                 'restaurant_id' => 10
             ],
+            [
+                'category_id' => 11,
+                'restaurant_id' => 11
+            ],
+            
+            [
+                'category_id' => 10,
+                'restaurant_id' => 12
+            ],
+            [
+                'category_id' => 12,
+                'restaurant_id' => 12
+            ],
+            [
+                'category_id' => 5,
+                'restaurant_id' => 13
+            ],
+            [
+                'category_id' => 12,
+                'restaurant_id' => 13
+            ],
+            [
+                'category_id' => 2,
+                'restaurant_id' => 14
+            ],
+            [
+                'category_id' => 4,
+                'restaurant_id' => 14
+            ],
+            [
+                'category_id' => 6,
+                'restaurant_id' => 14
+            ],
+            [
+                'category_id' => 8,
+                'restaurant_id' => 14
+            ],
+            [
+                'category_id' => 2,
+                'restaurant_id' => 15
+            ],
+            [
+                'category_id' => 4,
+                'restaurant_id' => 15
+            ],
+            [
+                'category_id' => 6,
+                'restaurant_id' => 15
+            ],
+            [
+                'category_id' => 8,
+                'restaurant_id' => 15
+            ],
+            
+            
         ];
 
         foreach ($relations as $relation) {
