@@ -24,7 +24,7 @@ class OrderController extends Controller
             ->join('orders', 'orders.id', '=', 'dish_order.order_id')
             ->select('orders.name', 'orders.total_price', 'orders.email', 'orders.address', 'orders.phone', 'orders.created_at','orders.id')
             ->orderBy('orders.created_at','desc')
-            ->where('dishes.restaurant_id',  Auth::user()->id)->get();
+            ->where('dishes.restaurant_id',  Auth::user()->id)->distinct('dish_order.order_id')->get();
 
         return view('admin.orders.index', compact('orders'));
     }
