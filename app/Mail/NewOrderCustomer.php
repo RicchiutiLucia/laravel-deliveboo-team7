@@ -29,15 +29,8 @@ class NewOrderCustomer extends Mailable
     public function build()
     {
         //dd($this->userData);
-        return $this->view('emails.orderGuestMail')->with(
-            'order',
-            $this->userData
-            /* [
-                'name' => $this->userData['name'],
-                'email' => $this->userData['email'],
-                'phone' => $this->userData['phone'],
-                'address' => $this->userData['address'],
-            ] */
-        );
+        return $this->subject('New Order Guest')
+        ->view('emails.orderGuestMail')
+        ->with('order',$this->userData);
     }
 }

@@ -24,6 +24,11 @@
                 padding: 12px 25px;
             }
 
+            .image-sizing{
+               
+                height: 34px;
+            }
+
             .delive-message {
                 text-align: center;
             }
@@ -31,7 +36,7 @@
             .order-total {
                 background-color: #f2f2f2;
                 border-radius: 5px;
-                padding: 12px;
+                padding: 15px;
                 margin-top: 1.75rem;
                 display: flex;
                 justify-content: space-between;
@@ -39,11 +44,12 @@
             }
 
             @media only screen and (max-width: 600px) {
-                .email-card {
-                    width: 100%;
-                }
-
                 
+
+                .image-sizing{
+                   
+                    height: 24px;
+                }
             }
         </style>
     </head>
@@ -57,21 +63,23 @@
             </div>
             <div class="order-total">
                 <div>
-                    <p>Order ID: {{ $order->id }}</p>
-                    <p>Name: {{ $order->name }}</p>
-                    <p>Email: {{ $order->email}}</p>
-                    <p>Phone: {{ $order->phone }}</p>
-                    <p>Address: {{ $order->address }}</p>
+                    <p>Order ID: {{ $order['lead']->id }}</p>
+                    <p>Name: {{ $order['lead']->name }}</p>
+                    <p>Email: {{ $order['lead']->email}}</p>
+                    <p>Phone: {{ $order['lead']->phone }}</p>
+                    <p>Address: {{ $order['lead']->address }}</p>
                     
                 <div>
-                    <h3>Total: <strong>{{ $order->total_price  }}€</strong></h3>
+                    <h3>Total: <strong>{{ $order['lead']->total_price }}€</strong></h3>
                 </div>
             </div>
         </div>
+        <strong>Riepilogo ordine:</strong>
         @foreach ($order['dishes'] as $item)
-            <div>
-                {{$item->name}}
-            </div>
+        <div>
+            <p>🔸{{$item->name}} - {{$item->price}}€</p>
+            
+        </div>
         @endforeach
     </body>
 </html>
