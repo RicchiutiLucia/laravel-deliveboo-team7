@@ -68,19 +68,26 @@
                     <p style="font-size: .9rem; color: rgba(33,33,33,.75)">Accendi i fornelli, hai un nuovo ordine da preparare!<br>In basso puoi consultare il riepilogo:</p>
                 </div>
                 <div>
-                    <p>Order ID: {{ $order->id }}</p>
-                    <p>Name: {{ $order->name }}</p>
-                    <p>Email: {{ $order->email}}</p>
-                    <p>Phone: {{ $order->phone }}</p>
-                    <p>Address: {{ $order->address }}</p>
+                    <p>Order ID: {{ $order['lead']->id }}</p>
+                    <p>Name: {{ $order['lead']->name }}</p>
+                    <p>Email: {{ $order['lead']->email}}</p>
+                    <p>Phone: {{ $order['lead']->phone }}</p>
+                    <p>Address: {{ $order['lead']->address }}</p>
                     
-                <div>
+                </div>
             </div>
             <div class="order-total">
                 <div>
-                    <h3>Totale: <strong>{{ $order->total_price }}€</strong></h3>
+                    <h3>Totale: <strong>{{ $order['lead']->total_price }}€</strong></h3>
                 </div>
             </div>
         </div>
+
+        @foreach ($order['dishes'] as $item)
+            <div>
+                {{$item->name}}
+                
+            </div>
+        @endforeach
     </body>
 </html>

@@ -33,13 +33,9 @@ class NewOrder extends Mailable
 
     public function build()
     {
+        //dd($this->order);
         return $this->subject('New Order Created')
-        ->view('emails.orderRestaurantMail')
-        ->with('order', $this->order);
+            ->view('emails.orderRestaurantMail')
+            ->with('order', $this->order);
     }
-        
-    }
-
-    
-    
-
+}

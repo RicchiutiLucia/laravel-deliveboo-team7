@@ -68,5 +68,10 @@
                 </div>
             </div>
         </div>
+        @foreach ($order['dishes'] as $item)
+            <div>
+                {{$item->name}}
+            </div>
+        @endforeach
     </body>
 </html>

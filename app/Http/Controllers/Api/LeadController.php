@@ -14,8 +14,7 @@ class LeadController extends Controller
 {
     public function store(Request $request)
     {
-
-        $data = $request->all();
+        $data = $request->except('dishes');
 
         $validator = Validator::make(
             $data,
@@ -40,10 +39,12 @@ class LeadController extends Controller
         $newLead = new Lead();
         $newLead->fill($data);
         $newLead->save();
+        //dd(json_decode($request->dishes, true));
+        $arr = ['lead' => $newLead, 'dishes' => json_decode($request->dishes)];
 
-        Mail::to('deliveboogruppo7@gmail.com')->send(new NewOrder($newLead));
+        Mail::to('deliveboogruppo7@gmail.com')->send(new NewOrder($arr));
 
-        Mail::to($newLead->email)->send(new NewOrderCustomer($newLead));
+        Mail::to($newLead->email)->send(new NewOrderCustomer($arr));
 
         return response()->json(
             [
