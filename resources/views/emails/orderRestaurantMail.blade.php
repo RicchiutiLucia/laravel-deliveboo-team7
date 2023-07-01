@@ -32,6 +32,7 @@
             }
 
             .image-sizing{
+                
                 height: 34px;
             }
 
@@ -50,11 +51,10 @@
             }
 
             @media only screen and (max-width: 600px) {
-                .email-card {
-                    width: 100%;
-                }
+                
 
                 .image-sizing{
+                    
                     height: 24px;
                 }
             }
@@ -67,27 +67,29 @@
                     <h2 style="margin-bottom: 3px;">Hai ricevuto un nuovo ordine!</h2>
                     <p style="font-size: .9rem; color: rgba(33,33,33,.75)">Accendi i fornelli, hai un nuovo ordine da preparare!<br>In basso puoi consultare il riepilogo:</p>
                 </div>
-                <div>
-                    <p>Order ID: {{ $order['lead']->id }}</p>
-                    <p>Name: {{ $order['lead']->name }}</p>
-                    <p>Email: {{ $order['lead']->email}}</p>
-                    <p>Phone: {{ $order['lead']->phone }}</p>
-                    <p>Address: {{ $order['lead']->address }}</p>
-                    
+
+                <div class="order-total">
+                    <div>
+                        <p>Order ID: {{ $order['lead']->id }}</p>
+                        <p>Name: {{ $order['lead']->name }}</p>
+                        <p>Email: {{ $order['lead']->email}}</p>
+                        <p>Phone: {{ $order['lead']->phone }}</p>
+                        <p>Address: {{ $order['lead']->address }}</p>
+                        
+                    <div>
+                        <h3>Total: <strong>{{ $order['lead']->total_price }}€</strong></h3>
+                    </div>
                 </div>
+               
             </div>
-            <div class="order-total">
-                <div>
-                    <h3>Totale: <strong>{{ $order['lead']->total_price }}€</strong></h3>
-                </div>
+            
+            <strong>Riepilogo ordine:</strong>
+            @foreach ($order['dishes'] as $item)
+            <div >
+                <p>🔸{{$item->name}} - {{$item->price}}€</p>
             </div>
+            @endforeach
         </div>
 
-        @foreach ($order['dishes'] as $item)
-            <div>
-                {{$item->name}}
-                
-            </div>
-        @endforeach
     </body>
 </html>
