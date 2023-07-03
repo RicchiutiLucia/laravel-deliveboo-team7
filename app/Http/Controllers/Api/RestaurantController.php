@@ -40,17 +40,17 @@ class RestaurantController extends Controller
 
         $resultArray = $restaurants->get();
 
-     
-        foreach ($resultArray as $key=>$restaurant) {
+
+        foreach ($resultArray as $key => $restaurant) {
             $category_ids = DB::table('category_restaurant')
-            ->where('restaurant_id', $restaurant->restaurant_id)
-            ->pluck('category_id')
-            ->toArray();
-            
+                ->where('restaurant_id', $restaurant->restaurant_id)
+                ->join('categories', 'categories.id', '=', 'category_restaurant.category_id')
+                ->pluck('categories.name')
+                ->toArray();
+
             $restaurant->category_id = $category_ids;
         }
 
-        
 
 
 
