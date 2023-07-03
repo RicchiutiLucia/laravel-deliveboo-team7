@@ -29,7 +29,7 @@ class RestaurantSeeder extends Seeder
             ],
             [
                 'user_id' => '',
-                'name' => 'Ristorante Gandhi Indiano Roma',
+                'name' => 'Ristorante Gandhi Indiano',
                 'description' => "",
                 'address' => 'Via Pellegrino Matteucci, 124, 00154 Roma RM',
                 'phone' => '06 6442 0047',
@@ -75,7 +75,7 @@ class RestaurantSeeder extends Seeder
             ],
             [
                 'user_id' => '',
-                'name' => "L'Officina del Pesce Roma",
+                'name' => "L'Officina del Pesce",
                 'description' => "",
                 'address' => 'Via Oderisi da Gubbio, 41/43, 00146 Roma RM',
                 'phone' => '06 9652 5561',
