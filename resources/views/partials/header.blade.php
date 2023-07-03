@@ -22,7 +22,7 @@
 
                     <a class="nav-link {{ Route::currentRouteName() == 'admin.dashboard' ? 'active' : '' }}" href="{{ route('admin.dashboard')  }}"> Dashboard</a>
                     <a class="nav-link {{ Route::currentRouteName() == 'admin.dishes.index' ? 'active' : '' }}" href="{{ route('admin.dishes.index') }}">Piatti</a>
-                    <a class="nav-link {{ Route::currentRouteName() == 'admin.dishes.create' ? 'active' : '' }}" href="{{ route('admin.dishes.create') }}">Crea nuovo piatto</a>
+                    <a class="nav-link {{ Route::currentRouteName() == 'admin.dishes.create' ? 'active' : '' }}" href="{{ route('admin.dishes.create') }}">Crea piatto</a>
                     <a class="nav-link {{ Route::currentRouteName() == 'admin.orders.index' ? 'active' : '' }}" href="{{ route('admin.orders.index') }}">Ordini</a>
                     <a class="nav-link {{ Route::currentRouteName() == 'admin.charts.index' ? 'active' : '' }}" href="{{ route('admin.charts.index') }}">Statistiche</a>
 
