@@ -38,13 +38,25 @@ class RestaurantController extends Controller
                 ->where('pivot' . $categoryId . '.category_id', $categoryId);
         }
 
-        $resultArray = $restaurants->get()->toArray();
+        $resultArray = $restaurants->get();
+
+     
+        foreach ($resultArray as $key=>$restaurant) {
+            $category_ids = DB::table('category_restaurant')
+            ->where('restaurant_id', $restaurant->restaurant_id)
+            ->pluck('category_id')
+            ->toArray();
+            
+            $restaurant->category_id = $category_ids;
+        }
+
+        
 
 
 
         return response()->json([
             'success' => true,
-            'result' =>  $resultArray
+            'result' =>  $resultArray->toArray()
 
         ]);
     }
