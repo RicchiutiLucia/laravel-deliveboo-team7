@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\NewOrder;
 use App\Mail\NewOrderCustomer;
 use App\Models\Lead;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class LeadController extends Controller
@@ -40,6 +41,7 @@ class LeadController extends Controller
         $newLead->fill($data);
         $newLead->save();
         //dd(json_decode($request->dishes, true));
+
         $arr = ['lead' => $newLead, 'dishes' => json_decode($request->dishes)];
 
         Mail::to('deliveboo7@libero.it')->send(new NewOrder($arr));
