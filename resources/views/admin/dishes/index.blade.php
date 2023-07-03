@@ -11,9 +11,10 @@
                 <div class="card m-3 shadow" style="width: 20rem;">
                     <div class="wrapper_img p-3">
                         @if ($dish->image)
-                            <img src="{{asset('storage/' . $dish->image)}}" class="card-img-top h-100 w-100" alt="{{ $dish->name }}">
+                            <img src="{{ asset('storage/' . $dish->image) }}" class="card-img-top" alt="{{ $dish->name }}">
                         @else
-                            <img src="https://www.tmedical.net/wp-content/uploads/2020/04/IMMAGINE-NON-DISPONIBILE.gif" class="card-img-top h-100 w-100" alt="{{ $dish->name }}">
+                            <img src="https://www.tmedical.net/wp-content/uploads/2020/04/IMMAGINE-NON-DISPONIBILE.gif"
+                                class="card-img-top h-100 w-100" alt="{{ $dish->name }}">
                         @endif
                     </div>
                     <div class="card-body d-flex flex-wrap">
