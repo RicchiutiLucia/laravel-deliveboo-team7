@@ -723,7 +723,7 @@ class DishSeeder extends Seeder
                 'price' => 9.99,
                 'ingredients' => 'pane, carne bovina, asiago, speck, maionese,zucchine',
                 'description' => '180 grammi di succosa carne bovina da allevamenti italiani, Asiago DOP, Speck Alto Adige IGP, maionese con senape in grani e zucchine grigliate. ',
-                'image' => 'cover/myselection-speck-asiago.jpg',
+                'image' => 'cover/myselection-speck-asiago.png',
                 'restaurant_id' => 14,
                 'visible' => true
 
@@ -754,7 +754,7 @@ class DishSeeder extends Seeder
                 'price' => 3.99,
                 'ingredients' => 'pollo',
                 'description' => 'Qualsiasi Sfiziosità sceglierai, ti aspetta un momento veramente sfizioso. Sia per completare i tuoi menu, che per un fare uno spuntino goloso. ',
-                'image' => 'cover/Nuggets.jpg',
+                'image' => 'cover/nuggets.png',
                 'restaurant_id' => 14,
                 'visible' => true
 
