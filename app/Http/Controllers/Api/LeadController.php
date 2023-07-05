@@ -44,7 +44,7 @@ class LeadController extends Controller
 
         $arr = ['lead' => $newLead, 'dishes' => json_decode($request->dishes)];
 
-        Mail::to('deliveboo7@libero.it')->send(new NewOrder($arr));
+        Mail::to('deliveboo7@yahoo.com')->send(new NewOrder($arr));
 
         Mail::to($newLead->email)->send(new NewOrderCustomer($arr));
 
